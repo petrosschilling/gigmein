@@ -7,44 +7,35 @@
 //
 
 import Foundation
+import ObjectMapper
 
 class JobPost: Entity{
     
-    var employer: Employer
-    var address: Address
-    var rate: Double
-    var paymentType: PaymentType
-    var description: String
-    var dueDate : Date
+    var employer: User?
+    var title: String?
+    var description: String?
+    var dueDate : Date?
+    var address: Address?
+    var rate: Double?
+    var paymentType: PaymentType?
     
-    init(employer: Employer, address: Address, rate: Double, paymentType: PaymentType, description: String, dueDate: Date) {
-        self.employer = employer
-        self.address = address
-        self.rate = rate
-        self.paymentType = paymentType
-        self.description = description
-        self.dueDate = dueDate
+    override init(){
         super.init()
     }
     
-    init(id: Int, employer: Employer, address: Address, rate: Double, paymentType: PaymentType, description: String, dueDate: Date) {
-        self.employer = employer
-        self.address = address
-        self.rate = rate
-        self.paymentType = paymentType
-        self.description = description
-        self.dueDate = dueDate
-        super.init(id: id)
+    required init?(map: Map) {
+        super.init(map: map)
     }
     
-    init(id: Int, dateCreated: Date, employer: Employer, address: Address, rate: Double, paymentType: PaymentType, description: String, dueDate: Date) {
-        self.employer = employer
-        self.address = address
-        self.rate = rate
-        self.paymentType = paymentType
-        self.description = description
-        self.dueDate = dueDate
-        super.init(id: id, dateCreated: dateCreated)
+    override func mapping(map: Map) {
+        super.mapping(map: map)
+        employer <- map["employer"]
+        title <- map["title"]
+        description <- map["description"]
+        dueDate <- map["dueDate"]
+        address <- map["address"]
+        rate <- map["rate"]
+        paymentType <- map["paymentType"]
     }
     
 }

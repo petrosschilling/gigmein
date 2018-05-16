@@ -7,34 +7,28 @@
 //
 
 import Foundation
+import ObjectMapper
 
-class Entity: Equatable, Hashable {
+class Entity: Equatable, Mappable {
     
-    var hashValue: Int
-    var id: Int
-    var dateCreated: Date
+    var uid: String = ""
+    var dateCreated: Date = nil ?? Date.init()
     
     init(){
-        id = 0;
         dateCreated = Date.init()
-        hashValue = dateCreated.hashValue
-    }
-    
-    init(id: Int){
-        self.id = id
-        self.dateCreated = Date.init()
-        self.hashValue = dateCreated.hashValue
-    }
-    
-    init(id: Int, dateCreated: Date){
-        self.id = id
-        self.dateCreated = dateCreated
-        self.hashValue = dateCreated.hashValue
     }
     
     static func ==(lhs: Entity, rhs: Entity) -> Bool {
-        return lhs.id == rhs.id &&
+        return lhs.uid == rhs.uid &&
             lhs.dateCreated == rhs.dateCreated
+    }
+    
+    required init?(map: Map) {
+    }
+    
+    func mapping(map: Map) {
+        uid   <- map["uid"]
+        dateCreated <- (map["dateCreated"], DateTransform())
     }
     
 

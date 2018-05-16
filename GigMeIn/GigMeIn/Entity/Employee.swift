@@ -9,33 +9,25 @@
 import Foundation
 class Employee: User {
     
-    var name: String
-    var surname: String
     var dob: Date
     var tfn: String
     
-    init(email: String, password: String, address: Address, phone: String, abn: String, type: UserType, name: String, surname: String, dob: Date, tfn: String) {
-        self.name = name
-        self.surname = surname
+    init(email: String, address: Address, phone: String, abn: String, type: UserType, dob: Date, tfn: String) {
         self.dob = dob
         self.tfn = tfn
-        super.init(email: email, password: password, address: address, phone: phone, abn: abn, type: .EMPLOYEE)
+        super.init(email: email, address: address, phone: phone, abn: abn, type: .EMPLOYEE)
     }
     
-    init(id: Int, email: String, password: String, address: Address, phone: String, abn: String, type: UserType, name: String, surname: String, dob: Date, tfn: String) {
-        self.name = name
-        self.surname = surname
+    init(uid: String, email: String, password: String, address: Address, phone: String, abn: String, type: UserType, dob: Date, tfn: String) {
         self.dob = dob
         self.tfn = tfn
-        super.init(id: id, email: email, password: password, address: address, phone: phone, abn: abn, type: .EMPLOYEE)
+        super.init(uid: uid, email: email, address: address, phone: phone, abn: abn, type: .EMPLOYEE)
     }
     
-    init(id: Int, dateCreated: Date, email: String, password: String, address: Address, phone: String, abn: String, type: UserType, name: String, surname: String, dob: Date, tfn: String) {
-        self.name = name
-        self.surname = surname
+    init(uid: String, dateCreated: Date, email: String, address: Address, phone: String, abn: String, type: UserType, dob: Date, tfn: String) {
         self.dob = dob
         self.tfn = tfn
-        super.init(id: id, dateCreated: dateCreated, email: email, password: password, address: address, phone: phone, abn: abn, type: .EMPLOYEE)
+        super.init(uid: uid, dateCreated: dateCreated, email: email, address: address, phone: phone, abn: abn, type: .EMPLOYEE)
     }
     
 }

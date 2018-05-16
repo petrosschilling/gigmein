@@ -7,27 +7,35 @@
 //
 
 import Foundation
+import ObjectMapper
 
-class Address{
+class Address: Mappable{
     
-    var unit: String
-    var streetNumber: String
-    var streetName: String
-    var suburb: String
-    var city: String
-    var postcode: String
-    var state: String
-    var country: String
+    var unit: String!
+    var streetNumber: String!
+    var streetName: String!
+    var suburb: String!
+    var city: String!
+    var postcode: String!
+    var state: String!
+    var country: String!
     
-    init(unit: String, streetNumber: String, streetName: String, suburb: String, city: String, postcode: String, state: String, country: String) {
-        self.unit = unit
-        self.streetNumber = streetNumber
-        self.streetName = streetName
-        self.suburb = suburb
-        self.city = city
-        self.postcode = postcode
-        self.state = postcode
-        self.country = country
+    init(){
+        
+    }
+    
+    required init?(map: Map) {
+    }
+    
+    func mapping(map: Map) {
+        unit <- map["unit"]
+        streetNumber <- map["streetNumber"]
+        streetName <- map["streetName"]
+        suburb <- map["suburb"]
+        city <- map["city"]
+        postcode <- map["postcode"]
+        state <- map["state"]
+        country <- map["country"]
     }
     
     func fullAddress() -> String {

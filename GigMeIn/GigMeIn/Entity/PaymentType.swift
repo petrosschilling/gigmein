@@ -9,7 +9,7 @@
 import Foundation
 
 enum PaymentType: String {
-    case CASH = "Cash"
+    case CASH = "CASH"
     case ABN = "ABN"
     case TFN = "TFN"
 }

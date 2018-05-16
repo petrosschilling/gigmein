@@ -8,7 +8,7 @@
 
 import Foundation
 
-enum JobApplicationStatus{
+enum JobApplicationStatus :String{
     
     case PENDING = "Pending"
     case ACCEPTED = "Accepted"

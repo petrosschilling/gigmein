@@ -12,19 +12,19 @@ class Employer: User {
     
     var businessName: String
     
-    init(email: String, password: String, address: Address, phone: String, abn: String, type: UserType, businessName: String) {
+    init(email: String, address: Address, phone: String, abn: String, type: UserType, businessName: String) {
         self.businessName = businessName
-        super.init(email: email, password: password, address: address, phone: phone, abn: abn, type: .EMPLOYER)
+        super.init(email: email, address: address, phone: phone, abn: abn, type: .EMPLOYER)
     }
     
-    init(id: Int, email: String, password: String, address: Address, phone: String, abn: String, type: UserType, businessName: String) {
+    init(uid: String, email: String, address: Address, phone: String, abn: String, type: UserType, businessName: String) {
         self.businessName = businessName
-        super.init(id: id, email: email, password: password, address: address, phone: phone, abn: abn, type: .EMPLOYER)
+        super.init(uid: uid, email: email, address: address, phone: phone, abn: abn, type: .EMPLOYER)
     }
     
-    init(id: Int, dateCreated: Date, email: String, password: String, address: Address, phone: String, abn: String, type: UserType, businessName: String) {
+    init(uid: String, dateCreated: Date, email: String, address: Address, phone: String, abn: String, type: UserType, businessName: String) {
         self.businessName = businessName
-        super.init(id: id, dateCreated: dateCreated, email: email, password: password, address: address, phone: phone, abn: abn, type: .EMPLOYER)
+        super.init(uid: uid, dateCreated: dateCreated, email: email, address: address, phone: phone, abn: abn, type: .EMPLOYER)
     }
 
 }

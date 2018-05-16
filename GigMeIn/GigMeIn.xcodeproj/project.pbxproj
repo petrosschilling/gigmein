@@ -7,30 +7,52 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		3F16449ED06122C9A48C7FFC /* Pods_GigMeIn.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 036205D5347AF3B1F650794B /* Pods_GigMeIn.framework */; };
+		AF0065F02092C9C600EC8C0E /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0065EF2092C9C600EC8C0E /* RegisterViewController.swift */; };
+		AF0065F42092D82800EC8C0E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0065F32092D82800EC8C0E /* LoginViewController.swift */; };
+		AF0065F92092F22D00EC8C0E /* Employer.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AF0065F82092F22D00EC8C0E /* Employer.storyboard */; };
+		AF0065FB2092F27F00EC8C0E /* JobsPostedViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0065FA2092F27F00EC8C0E /* JobsPostedViewController.swift */; };
+		AF115DF62092AF4C00B4C83D /* GoogleService-Info.plist in Resources */ = {isa = PBXBuildFile; fileRef = AF115DF52092AF4C00B4C83D /* GoogleService-Info.plist */; };
+		AF115DF82092B0A500B4C83D /* Podfile in Resources */ = {isa = PBXBuildFile; fileRef = AF115DF72092B0A500B4C83D /* Podfile */; };
+		AF19262520A3FD6E00291042 /* Employee.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AF19262420A3FD6E00291042 /* Employee.storyboard */; };
+		AF19262720A40EF200291042 /* EmployeeJobPostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF19262620A40EF200291042 /* EmployeeJobPostCell.swift */; };
+		AF19262920A535E900291042 /* EmployeeMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF19262820A535E900291042 /* EmployeeMainViewController.swift */; };
+		AF19410E20AB14CA0004486A /* StoryboardNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF19410D20AB14CA0004486A /* StoryboardNavigationController.swift */; };
 		AF229CBB206A29C300294331 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF229CBA206A29C300294331 /* AppDelegate.swift */; };
-		AF229CBD206A29C300294331 /* FirstViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF229CBC206A29C300294331 /* FirstViewController.swift */; };
-		AF229CBF206A29C300294331 /* SecondViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF229CBE206A29C300294331 /* SecondViewController.swift */; };
-		AF229CC2206A29C300294331 /* Main.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AF229CC0206A29C300294331 /* Main.storyboard */; };
+		AF229CC2206A29C300294331 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AF229CC0206A29C300294331 /* Login.storyboard */; };
 		AF229CC4206A29C300294331 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AF229CC3206A29C300294331 /* Assets.xcassets */; };
 		AF229CC7206A29C300294331 /* LaunchScreen.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AF229CC5206A29C300294331 /* LaunchScreen.storyboard */; };
 		AF229CD1206A2EF300294331 /* Entity.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF229CD0206A2EF300294331 /* Entity.swift */; };
 		AF229CD3206A5C9D00294331 /* User.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF229CD2206A5C9D00294331 /* User.swift */; };
 		AF229CD5206A5E3F00294331 /* UserType.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF229CD4206A5E3F00294331 /* UserType.swift */; };
 		AF229CD7206A5EF000294331 /* Address.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF229CD6206A5EF000294331 /* Address.swift */; };
-		AF229CD9206A726B00294331 /* Employer.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF229CD8206A726A00294331 /* Employer.swift */; };
-		AF229CDB206A794300294331 /* Employee.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF229CDA206A794300294331 /* Employee.swift */; };
 		AF229CDD206A85A800294331 /* JobApplicationStatus.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF229CDC206A85A800294331 /* JobApplicationStatus.swift */; };
 		AF229CDF206A861100294331 /* JobApplication.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF229CDE206A861000294331 /* JobApplication.swift */; };
 		AF229CE1206A869900294331 /* PaymentType.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF229CE0206A869900294331 /* PaymentType.swift */; };
 		AF229CE3206A872C00294331 /* JobPost.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF229CE2206A872C00294331 /* JobPost.swift */; };
+		AF3C04DA20A1D28C001073DC /* JobPostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF3C04D920A1D28C001073DC /* JobPostCell.swift */; };
+		AF463E752097D65A0079BC85 /* JSONUtil.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF463E742097D65A0079BC85 /* JSONUtil.swift */; };
+		AF8CC50E209820E100333A1A /* CreateJobPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF8CC50D209820E100333A1A /* CreateJobPostViewController.swift */; };
+		AF9F33C12096F7AC0099A421 /* ModelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF9F33C02096F7AC0099A421 /* ModelController.swift */; };
+		AF9F33C3209713160099A421 /* RegisterDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF9F33C2209713160099A421 /* RegisterDetailViewController.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
+		036205D5347AF3B1F650794B /* Pods_GigMeIn.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GigMeIn.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		430AC41DBB0E7FEAA702F968 /* Pods-GigMeIn.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GigMeIn.release.xcconfig"; path = "Pods/Target Support Files/Pods-GigMeIn/Pods-GigMeIn.release.xcconfig"; sourceTree = "<group>"; };
+		AF0065EF2092C9C600EC8C0E /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
+		AF0065F32092D82800EC8C0E /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
+		AF0065F82092F22D00EC8C0E /* Employer.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Employer.storyboard; sourceTree = "<group>"; };
+		AF0065FA2092F27F00EC8C0E /* JobsPostedViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobsPostedViewController.swift; sourceTree = "<group>"; };
+		AF115DF52092AF4C00B4C83D /* GoogleService-Info.plist */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text.plist.xml; path = "GoogleService-Info.plist"; sourceTree = "<group>"; };
+		AF115DF72092B0A500B4C83D /* Podfile */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = text; path = Podfile; sourceTree = "<group>"; xcLanguageSpecificationIdentifier = xcode.lang.ruby; };
+		AF19262420A3FD6E00291042 /* Employee.storyboard */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; path = Employee.storyboard; sourceTree = "<group>"; };
+		AF19262620A40EF200291042 /* EmployeeJobPostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeJobPostCell.swift; sourceTree = "<group>"; };
+		AF19262820A535E900291042 /* EmployeeMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeMainViewController.swift; sourceTree = "<group>"; };
+		AF19410D20AB14CA0004486A /* StoryboardNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryboardNavigationController.swift; sourceTree = "<group>"; };
 		AF229CB7206A29C300294331 /* GigMeIn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GigMeIn.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF229CBA206A29C300294331 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
-		AF229CBC206A29C300294331 /* FirstViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = FirstViewController.swift; sourceTree = "<group>"; };
-		AF229CBE206A29C300294331 /* SecondViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = SecondViewController.swift; sourceTree = "<group>"; };
-		AF229CC1206A29C300294331 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Main.storyboard; sourceTree = "<group>"; };
+		AF229CC1206A29C300294331 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Login.storyboard; sourceTree = "<group>"; };
 		AF229CC3206A29C300294331 /* Assets.xcassets */ = {isa = PBXFileReference; lastKnownFileType = folder.assetcatalog; path = Assets.xcassets; sourceTree = "<group>"; };
 		AF229CC6206A29C300294331 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/LaunchScreen.storyboard; sourceTree = "<group>"; };
 		AF229CC8206A29C300294331 /* Info.plist */ = {isa = PBXFileReference; lastKnownFileType = text.plist.xml; path = Info.plist; sourceTree = "<group>"; };
@@ -38,12 +60,16 @@
 		AF229CD2206A5C9D00294331 /* User.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = User.swift; sourceTree = "<group>"; };
 		AF229CD4206A5E3F00294331 /* UserType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UserType.swift; sourceTree = "<group>"; };
 		AF229CD6206A5EF000294331 /* Address.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Address.swift; sourceTree = "<group>"; };
-		AF229CD8206A726A00294331 /* Employer.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Employer.swift; sourceTree = "<group>"; };
-		AF229CDA206A794300294331 /* Employee.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = Employee.swift; sourceTree = "<group>"; };
 		AF229CDC206A85A800294331 /* JobApplicationStatus.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobApplicationStatus.swift; sourceTree = "<group>"; };
 		AF229CDE206A861000294331 /* JobApplication.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobApplication.swift; sourceTree = "<group>"; };
 		AF229CE0206A869900294331 /* PaymentType.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = PaymentType.swift; sourceTree = "<group>"; };
 		AF229CE2206A872C00294331 /* JobPost.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobPost.swift; sourceTree = "<group>"; };
+		AF3C04D920A1D28C001073DC /* JobPostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobPostCell.swift; sourceTree = "<group>"; };
+		AF463E742097D65A0079BC85 /* JSONUtil.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JSONUtil.swift; sourceTree = "<group>"; };
+		AF8CC50D209820E100333A1A /* CreateJobPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateJobPostViewController.swift; sourceTree = "<group>"; };
+		AF9F33C02096F7AC0099A421 /* ModelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelController.swift; sourceTree = "<group>"; };
+		AF9F33C2209713160099A421 /* RegisterDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterDetailViewController.swift; sourceTree = "<group>"; };
+		D09A1E7D761232C1ABA45D43 /* Pods-GigMeIn.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GigMeIn.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GigMeIn/Pods-GigMeIn.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
 /* Begin PBXFrameworksBuildPhase section */
@@ -51,17 +77,51 @@
 			isa = PBXFrameworksBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				3F16449ED06122C9A48C7FFC /* Pods_GigMeIn.framework in Frameworks */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXFrameworksBuildPhase section */
 
 /* Begin PBXGroup section */
+		45565F69D8E06408694527C3 /* Pods */ = {
+			isa = PBXGroup;
+			children = (
+				D09A1E7D761232C1ABA45D43 /* Pods-GigMeIn.debug.xcconfig */,
+				430AC41DBB0E7FEAA702F968 /* Pods-GigMeIn.release.xcconfig */,
+			);
+			name = Pods;
+			sourceTree = "<group>";
+		};
+		6F1630469E76CDF0D6450966 /* Frameworks */ = {
+			isa = PBXGroup;
+			children = (
+				036205D5347AF3B1F650794B /* Pods_GigMeIn.framework */,
+			);
+			name = Frameworks;
+			sourceTree = "<group>";
+		};
+		AF0065EE2092C5DC00EC8C0E /* ViewController */ = {
+			isa = PBXGroup;
+			children = (
+				AF0065F32092D82800EC8C0E /* LoginViewController.swift */,
+				AF0065EF2092C9C600EC8C0E /* RegisterViewController.swift */,
+				AF9F33C2209713160099A421 /* RegisterDetailViewController.swift */,
+				AF0065FA2092F27F00EC8C0E /* JobsPostedViewController.swift */,
+				AF8CC50D209820E100333A1A /* CreateJobPostViewController.swift */,
+				AF19262820A535E900291042 /* EmployeeMainViewController.swift */,
+			);
+			path = ViewController;
+			sourceTree = "<group>";
+		};
 		AF229CAE206A29C300294331 = {
 			isa = PBXGroup;
 			children = (
+				AF115DF72092B0A500B4C83D /* Podfile */,
 				AF229CB9206A29C300294331 /* GigMeIn */,
 				AF229CB8206A29C300294331 /* Products */,
+				45565F69D8E06408694527C3 /* Pods */,
+				6F1630469E76CDF0D6450966 /* Frameworks */,
 			);
 			sourceTree = "<group>";
 		};
@@ -76,14 +136,19 @@
 		AF229CB9206A29C300294331 /* GigMeIn */ = {
 			isa = PBXGroup;
 			children = (
+				AF3C04DB20A1D310001073DC /* Cells */,
+				AF463E732097D63A0079BC85 /* Utils */,
+				AF9F33BE2096F6B70099A421 /* ModelController */,
+				AF0065EE2092C5DC00EC8C0E /* ViewController */,
 				AF229CCE206A2D8500294331 /* Entity */,
 				AF229CBA206A29C300294331 /* AppDelegate.swift */,
-				AF229CBC206A29C300294331 /* FirstViewController.swift */,
-				AF229CBE206A29C300294331 /* SecondViewController.swift */,
-				AF229CC0206A29C300294331 /* Main.storyboard */,
-				AF229CC3206A29C300294331 /* Assets.xcassets */,
 				AF229CC5206A29C300294331 /* LaunchScreen.storyboard */,
+				AF229CC0206A29C300294331 /* Login.storyboard */,
+				AF0065F82092F22D00EC8C0E /* Employer.storyboard */,
+				AF19262420A3FD6E00291042 /* Employee.storyboard */,
+				AF229CC3206A29C300294331 /* Assets.xcassets */,
 				AF229CC8206A29C300294331 /* Info.plist */,
+				AF115DF52092AF4C00B4C83D /* GoogleService-Info.plist */,
 			);
 			path = GigMeIn;
 			sourceTree = "<group>";
@@ -95,14 +160,38 @@
 				AF229CD2206A5C9D00294331 /* User.swift */,
 				AF229CD4206A5E3F00294331 /* UserType.swift */,
 				AF229CD6206A5EF000294331 /* Address.swift */,
-				AF229CD8206A726A00294331 /* Employer.swift */,
-				AF229CDA206A794300294331 /* Employee.swift */,
 				AF229CDC206A85A800294331 /* JobApplicationStatus.swift */,
 				AF229CDE206A861000294331 /* JobApplication.swift */,
 				AF229CE0206A869900294331 /* PaymentType.swift */,
 				AF229CE2206A872C00294331 /* JobPost.swift */,
 			);
 			path = Entity;
+			sourceTree = "<group>";
+		};
+		AF3C04DB20A1D310001073DC /* Cells */ = {
+			isa = PBXGroup;
+			children = (
+				AF3C04D920A1D28C001073DC /* JobPostCell.swift */,
+				AF19262620A40EF200291042 /* EmployeeJobPostCell.swift */,
+			);
+			path = Cells;
+			sourceTree = "<group>";
+		};
+		AF463E732097D63A0079BC85 /* Utils */ = {
+			isa = PBXGroup;
+			children = (
+				AF463E742097D65A0079BC85 /* JSONUtil.swift */,
+			);
+			path = Utils;
+			sourceTree = "<group>";
+		};
+		AF9F33BE2096F6B70099A421 /* ModelController */ = {
+			isa = PBXGroup;
+			children = (
+				AF9F33C02096F7AC0099A421 /* ModelController.swift */,
+				AF19410D20AB14CA0004486A /* StoryboardNavigationController.swift */,
+			);
+			path = ModelController;
 			sourceTree = "<group>";
 		};
 /* End PBXGroup section */
@@ -112,9 +201,11 @@
 			isa = PBXNativeTarget;
 			buildConfigurationList = AF229CCB206A29C300294331 /* Build configuration list for PBXNativeTarget "GigMeIn" */;
 			buildPhases = (
+				4DEBB513C6D7CA1931681E72 /* [CP] Check Pods Manifest.lock */,
 				AF229CB3206A29C300294331 /* Sources */,
 				AF229CB4206A29C300294331 /* Frameworks */,
 				AF229CB5206A29C300294331 /* Resources */,
+				1139288B8F64E6034858A787 /* [CP] Embed Pods Frameworks */,
 			);
 			buildRules = (
 			);
@@ -132,7 +223,7 @@
 			isa = PBXProject;
 			attributes = {
 				LastSwiftUpdateCheck = 0920;
-				LastUpgradeCheck = 0920;
+				LastUpgradeCheck = 0930;
 				ORGANIZATIONNAME = "Petros Schilling";
 				TargetAttributes = {
 					AF229CB6206A29C300294331 = {
@@ -164,44 +255,104 @@
 			isa = PBXResourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AF115DF82092B0A500B4C83D /* Podfile in Resources */,
 				AF229CC7206A29C300294331 /* LaunchScreen.storyboard in Resources */,
+				AF115DF62092AF4C00B4C83D /* GoogleService-Info.plist in Resources */,
+				AF0065F92092F22D00EC8C0E /* Employer.storyboard in Resources */,
 				AF229CC4206A29C300294331 /* Assets.xcassets in Resources */,
-				AF229CC2206A29C300294331 /* Main.storyboard in Resources */,
+				AF229CC2206A29C300294331 /* Login.storyboard in Resources */,
+				AF19262520A3FD6E00291042 /* Employee.storyboard in Resources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXResourcesBuildPhase section */
+
+/* Begin PBXShellScriptBuildPhase section */
+		1139288B8F64E6034858A787 /* [CP] Embed Pods Frameworks */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${SRCROOT}/Pods/Target Support Files/Pods-GigMeIn/Pods-GigMeIn-frameworks.sh",
+				"${BUILT_PRODUCTS_DIR}/GTMSessionFetcher/GTMSessionFetcher.framework",
+				"${BUILT_PRODUCTS_DIR}/GoogleToolboxForMac/GoogleToolboxForMac.framework",
+				"${BUILT_PRODUCTS_DIR}/ObjectMapper/ObjectMapper.framework",
+				"${BUILT_PRODUCTS_DIR}/PromiseKit/PromiseKit.framework",
+				"${BUILT_PRODUCTS_DIR}/leveldb-library/leveldb.framework",
+				"${BUILT_PRODUCTS_DIR}/nanopb/nanopb.framework",
+			);
+			name = "[CP] Embed Pods Frameworks";
+			outputPaths = (
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GTMSessionFetcher.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/GoogleToolboxForMac.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/ObjectMapper.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/PromiseKit.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/leveldb.framework",
+				"${TARGET_BUILD_DIR}/${FRAMEWORKS_FOLDER_PATH}/nanopb.framework",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "\"${SRCROOT}/Pods/Target Support Files/Pods-GigMeIn/Pods-GigMeIn-frameworks.sh\"\n";
+			showEnvVarsInLog = 0;
+		};
+		4DEBB513C6D7CA1931681E72 /* [CP] Check Pods Manifest.lock */ = {
+			isa = PBXShellScriptBuildPhase;
+			buildActionMask = 2147483647;
+			files = (
+			);
+			inputPaths = (
+				"${PODS_PODFILE_DIR_PATH}/Podfile.lock",
+				"${PODS_ROOT}/Manifest.lock",
+			);
+			name = "[CP] Check Pods Manifest.lock";
+			outputPaths = (
+				"$(DERIVED_FILE_DIR)/Pods-GigMeIn-checkManifestLockResult.txt",
+			);
+			runOnlyForDeploymentPostprocessing = 0;
+			shellPath = /bin/sh;
+			shellScript = "diff \"${PODS_PODFILE_DIR_PATH}/Podfile.lock\" \"${PODS_ROOT}/Manifest.lock\" > /dev/null\nif [ $? != 0 ] ; then\n    # print error to STDERR\n    echo \"error: The sandbox is not in sync with the Podfile.lock. Run 'pod install' or update your CocoaPods installation.\" >&2\n    exit 1\nfi\n# This output is used by Xcode 'outputs' to avoid re-running this script phase.\necho \"SUCCESS\" > \"${SCRIPT_OUTPUT_FILE_0}\"\n";
+			showEnvVarsInLog = 0;
+		};
+/* End PBXShellScriptBuildPhase section */
 
 /* Begin PBXSourcesBuildPhase section */
 		AF229CB3206A29C300294331 /* Sources */ = {
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				AF8CC50E209820E100333A1A /* CreateJobPostViewController.swift in Sources */,
+				AF19262920A535E900291042 /* EmployeeMainViewController.swift in Sources */,
 				AF229CD1206A2EF300294331 /* Entity.swift in Sources */,
-				AF229CDB206A794300294331 /* Employee.swift in Sources */,
 				AF229CDF206A861100294331 /* JobApplication.swift in Sources */,
 				AF229CDD206A85A800294331 /* JobApplicationStatus.swift in Sources */,
+				AF9F33C3209713160099A421 /* RegisterDetailViewController.swift in Sources */,
 				AF229CE1206A869900294331 /* PaymentType.swift in Sources */,
-				AF229CBF206A29C300294331 /* SecondViewController.swift in Sources */,
 				AF229CD5206A5E3F00294331 /* UserType.swift in Sources */,
+				AF19262720A40EF200291042 /* EmployeeJobPostCell.swift in Sources */,
 				AF229CBB206A29C300294331 /* AppDelegate.swift in Sources */,
+				AF0065FB2092F27F00EC8C0E /* JobsPostedViewController.swift in Sources */,
 				AF229CD3206A5C9D00294331 /* User.swift in Sources */,
-				AF229CBD206A29C300294331 /* FirstViewController.swift in Sources */,
-				AF229CD9206A726B00294331 /* Employer.swift in Sources */,
+				AF19410E20AB14CA0004486A /* StoryboardNavigationController.swift in Sources */,
+				AF3C04DA20A1D28C001073DC /* JobPostCell.swift in Sources */,
+				AF0065F02092C9C600EC8C0E /* RegisterViewController.swift in Sources */,
 				AF229CE3206A872C00294331 /* JobPost.swift in Sources */,
+				AF0065F42092D82800EC8C0E /* LoginViewController.swift in Sources */,
+				AF463E752097D65A0079BC85 /* JSONUtil.swift in Sources */,
 				AF229CD7206A5EF000294331 /* Address.swift in Sources */,
+				AF9F33C12096F7AC0099A421 /* ModelController.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};
 /* End PBXSourcesBuildPhase section */
 
 /* Begin PBXVariantGroup section */
-		AF229CC0206A29C300294331 /* Main.storyboard */ = {
+		AF229CC0206A29C300294331 /* Login.storyboard */ = {
 			isa = PBXVariantGroup;
 			children = (
 				AF229CC1206A29C300294331 /* Base */,
 			);
-			name = Main.storyboard;
+			name = Login.storyboard;
 			sourceTree = "<group>";
 		};
 		AF229CC5206A29C300294331 /* LaunchScreen.storyboard */ = {
@@ -229,6 +380,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -236,6 +388,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -286,6 +439,7 @@
 				CLANG_WARN_BOOL_CONVERSION = YES;
 				CLANG_WARN_COMMA = YES;
 				CLANG_WARN_CONSTANT_CONVERSION = YES;
+				CLANG_WARN_DEPRECATED_OBJC_IMPLEMENTATIONS = YES;
 				CLANG_WARN_DIRECT_OBJC_ISA_USAGE = YES_ERROR;
 				CLANG_WARN_DOCUMENTATION_COMMENTS = YES;
 				CLANG_WARN_EMPTY_BODY = YES;
@@ -293,6 +447,7 @@
 				CLANG_WARN_INFINITE_RECURSION = YES;
 				CLANG_WARN_INT_CONVERSION = YES;
 				CLANG_WARN_NON_LITERAL_NULL_CONVERSION = YES;
+				CLANG_WARN_OBJC_IMPLICIT_RETAIN_SELF = YES;
 				CLANG_WARN_OBJC_LITERAL_CONVERSION = YES;
 				CLANG_WARN_OBJC_ROOT_CLASS = YES_ERROR;
 				CLANG_WARN_RANGE_LOOP_ANALYSIS = YES;
@@ -324,31 +479,33 @@
 		};
 		AF229CCC206A29C300294331 /* Debug */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = D09A1E7D761232C1ABA45D43 /* Pods-GigMeIn.debug.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GSMTDU625V;
 				INFOPLIST_FILE = GigMeIn/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.petrosschilling.GigMeIn;
+				PRODUCT_BUNDLE_IDENTIFIER = com.msl.gigmein;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Debug;
 		};
 		AF229CCD206A29C300294331 /* Release */ = {
 			isa = XCBuildConfiguration;
+			baseConfigurationReference = 430AC41DBB0E7FEAA702F968 /* Pods-GigMeIn.release.xcconfig */;
 			buildSettings = {
 				ASSETCATALOG_COMPILER_APPICON_NAME = AppIcon;
 				CODE_SIGN_STYLE = Automatic;
 				DEVELOPMENT_TEAM = GSMTDU625V;
 				INFOPLIST_FILE = GigMeIn/Info.plist;
 				LD_RUNPATH_SEARCH_PATHS = "$(inherited) @executable_path/Frameworks";
-				PRODUCT_BUNDLE_IDENTIFIER = com.petrosschilling.GigMeIn;
+				PRODUCT_BUNDLE_IDENTIFIER = com.msl.gigmein;
 				PRODUCT_NAME = "$(TARGET_NAME)";
 				SWIFT_VERSION = 4.0;
-				TARGETED_DEVICE_FAMILY = "1,2";
+				TARGETED_DEVICE_FAMILY = 1;
 			};
 			name = Release;
 		};

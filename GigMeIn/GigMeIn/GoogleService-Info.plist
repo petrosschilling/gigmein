@@ -1,0 +1,40 @@
+<?xml version="1.0" encoding="UTF-8"?>
+<!DOCTYPE plist PUBLIC "-//Apple//DTD PLIST 1.0//EN" "http://www.apple.com/DTDs/PropertyList-1.0.dtd">
+<plist version="1.0">
+<dict>
+	<key>AD_UNIT_ID_FOR_BANNER_TEST</key>
+	<string>ca-app-pub-3940256099942544/2934735716</string>
+	<key>AD_UNIT_ID_FOR_INTERSTITIAL_TEST</key>
+	<string>ca-app-pub-3940256099942544/4411468910</string>
+	<key>CLIENT_ID</key>
+	<string>292929868371-u668om63kr6lfhiflf22ekh8e23g09r4.apps.googleusercontent.com</string>
+	<key>REVERSED_CLIENT_ID</key>
+	<string>com.googleusercontent.apps.292929868371-u668om63kr6lfhiflf22ekh8e23g09r4</string>
+	<key>API_KEY</key>
+	<string>AIzaSyD0X19gOsAcB2zH67Co38EVR-GkS8YdNe0</string>
+	<key>GCM_SENDER_ID</key>
+	<string>292929868371</string>
+	<key>PLIST_VERSION</key>
+	<string>1</string>
+	<key>BUNDLE_ID</key>
+	<string>com.msl.gigmein</string>
+	<key>PROJECT_ID</key>
+	<string>gigmein</string>
+	<key>STORAGE_BUCKET</key>
+	<string>gigmein.appspot.com</string>
+	<key>IS_ADS_ENABLED</key>
+	<true></true>
+	<key>IS_ANALYTICS_ENABLED</key>
+	<false></false>
+	<key>IS_APPINVITE_ENABLED</key>
+	<false></false>
+	<key>IS_GCM_ENABLED</key>
+	<true></true>
+	<key>IS_SIGNIN_ENABLED</key>
+	<true></true>
+	<key>GOOGLE_APP_ID</key>
+	<string>1:292929868371:ios:2bbc96cf327a0819</string>
+	<key>DATABASE_URL</key>
+	<string>https://gigmein.firebaseio.com</string>
+</dict>
+</plist>

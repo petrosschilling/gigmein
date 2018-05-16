@@ -7,32 +7,22 @@
 //
 
 import Foundation
+import ObjectMapper
 
 class JobApplication: Entity{
     
-    var applicant: Employee
-    var jobPost: JobPost
-    var status: JobApplicationStatus = .PENDING
+    var applicant: User?
+    var jobPost: JobPost?
+    var status: JobApplicationStatus! = .PENDING
     
-    init(applicant: Employee, jobPost: JobPost) {
-        self.applicant = applicant
-        self.jobPost = jobPost
+    override init() {
         super.init()
     }
     
-    init(id: Int, applicant: Employee, jobPost: JobPost, status: JobApplicationStatus) {
-        self.applicant = applicant
-        self.jobPost = jobPost
-        self.status = status
-        super.init(id: id)
+    required init?(map: Map) {
+        fatalError("init(map:) has not been implemented")
     }
     
-    init(id: Int, dateCreated: Date, applicant: Employee, jobPost: JobPost, status: JobApplicationStatus) {
-        self.applicant = applicant
-        self.jobPost = jobPost
-        self.status = status
-        super.init(id: id, dateCreated: dateCreated)
-    }
     
     
 }
