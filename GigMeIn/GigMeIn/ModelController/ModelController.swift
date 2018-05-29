@@ -20,9 +20,7 @@ class ModelController{
     let dbRef: DatabaseReference = Database.database().reference()
     let nav: StoryboardNavigationController = StoryboardNavigationController()
     var user: User = User(email: "")
-    
-    
-    
+
     //employer vars
     var jobPosts: [JobPost] = []
     var applicantsIds: [String] = []
@@ -32,6 +30,7 @@ class ModelController{
     var jobsToApply: [JobPost] = []
     var rejectedJobIds: [String: Bool] = [:]
     var appliedJobIds: [String: Bool] = [:]
+    var jobsApplied: [JobPost] = []
     
     func reset(){
         self.jobsToApply = []
@@ -40,6 +39,7 @@ class ModelController{
         self.appliedJobIds = [:]
         self.applicantsIds = []
         self.jobApplicants = []
+        self.jobsApplied = []
         self.user = User(email: "")
     }
     
@@ -77,7 +77,7 @@ class ModelController{
         }
     }
 
-    //EMPLOYER METHODS
+    //MARK: - EMPLOYER METHODS
     
     func loadJobsPostedByLoggedUser() -> Promise<Bool>{
         
@@ -102,12 +102,13 @@ class ModelController{
         
         let jobPostJSON = jobPost.toJSON()
         
-        self.dbRef.child("jobPosts").child(userUID).child(key).setValue(jobPostJSON)
+        self.dbRef.child("jobPosts").child("byEmployer").child(userUID).child(key).setValue(jobPostJSON)
+        self.dbRef.child("jobPosts").child("all").child(key).setValue(jobPostJSON)
         self.jobPosts.append(jobPost)
     }
     
     func acceptJobApplication(user: User, job: JobPost){
-        self.dbRef.child("jobApplications").child("forEmployee").child(user.uid).child(job.uid).setValue(true)
+        self.dbRef.child("jobApplications").child("byEmployee").child(user.uid).child(job.uid).setValue(true)
     }
     
     func loadJobApplicantsIds(jobPost: JobPost, with dispatch: DispatchGroup){// -> Promise<[String]>{
@@ -115,7 +116,7 @@ class ModelController{
         dispatch.enter()
         let jobPostId = jobPost.uid
         
-        self.dbRef.child("jobApplications").child("forEmployer").child(jobPostId).observeSingleEvent(of: DataEventType.value, with:{ (snapshot) in
+        self.dbRef.child("jobApplications").child("byJobPost").child(jobPostId).observeSingleEvent(of: DataEventType.value, with:{ (snapshot) in
             print("loading users ids")
             let children = snapshot.children
             while let child = children.nextObject() as? DataSnapshot{
@@ -124,27 +125,9 @@ class ModelController{
             print("loading users ids finnished")
             dispatch.leave()
         })
-//
-//        return Promise{seal in
-//
-//            var userIds = [String]()
-//            let jobPostId = jobPost.uid
-//
-//            self.dbRef.child("jobApplication").child("forEmployer").child(jobPostId).observeSingleEvent(of: DataEventType.value, with:{ (snapshot) in
-//
-//                let children = snapshot.children
-//                while let child = children.nextObject() as? DataSnapshot{
-//                    userIds.append(child.key)
-//                }
-//                seal.fulfill(userIds)
-//                dispatch.leave()
-//            })
-//        }
-        
     }
     
     func loadJobApplicants(with dispatch: DispatchGroup){// -> Promise<[User]>{
-        self.jobApplicants = []
         dispatch.enter()
         for s in self.applicantsIds{
             self.dbRef.child("users").queryOrderedByKey().queryEqual(toValue: s).observeSingleEvent(of: DataEventType.value, with: { (snap) in
@@ -161,32 +144,10 @@ class ModelController{
                 }
             })
         }
-
-//        return Promise{seal in
-//
-//            var usersThatApplied = [User]()
-//            for s in userIds{
-//                self.dbRef.child("users").queryOrderedByKey().queryEqual(toValue: s).observeSingleEvent(of: DataEventType.value, with: { (snap) in
-//
-//                    let uChildren = snap.children
-//                    if let child = uChildren.nextObject() as? DataSnapshot{
-//                        if let uVal = child.value as? [String:Any]{
-//                            let u = Mapper<User>().map(JSON: uVal)
-//                            usersThatApplied.append(u!)
-//                        }
-//                    }
-//                    dispatch.leave()
-//                    seal.fulfill(usersThatApplied)
-//                })
-//            }
-//
-//
-//        }
-        
     }
     
     
-    // EMPLOYEE METHODS
+    //MARK: - EMPLOYEE METHODS
     
     func loadJobsToApply(tableView: UITableView) -> Promise<Bool>{
         //TODO improve filter jobs to exclude the rejected ones
@@ -214,6 +175,30 @@ class ModelController{
         }
     }
     
+    func loadAppliedJobs(with dispatch: DispatchGroup){
+        self.jobsApplied = []
+        dispatch.enter()
+        for postId in self.appliedJobIds{
+            self.dbRef.child("jobPosts").child("all").queryOrderedByKey().queryEqual(toValue: postId.key).observeSingleEvent(of: DataEventType.value, with: { (snapshot) in
+                
+                print("loading job " + postId.key)
+                let children = snapshot.children
+                if let child = children.nextObject() as? DataSnapshot{
+                    if let post = child.value as? [String:Any]{
+                        let p = Mapper<JobPost>().map(JSON: post)
+                        self.jobsApplied.append(p!)
+                    }
+                }
+                print("finished loading " + postId.key)
+                if(self.jobsApplied.count == self.appliedJobIds.count){
+                    print("Finished loading all applications!")
+                    dispatch.leave()
+                }
+            })
+        }
+        
+    }
+    
     func rejectJob(){
         self.dbRef.child("jobRejections").child(self.user.uid).child(self.jobsToApply[0].uid).setValue(true)
         self.rejectedJobIds[self.jobsToApply[0].uid] = true
@@ -224,13 +209,13 @@ class ModelController{
         let jobAppRef = self.dbRef.child("jobApplications")
         let jobUID = self.jobsToApply[0].uid
         let userUID = self.user.uid
-        jobAppRef.child("forEmployer").child(jobUID).child(userUID).setValue(false)
-        jobAppRef.child("forEmployee").child(userUID).child(jobUID).setValue(false)
+        jobAppRef.child("byJobPost").child(jobUID).child(userUID).setValue(false)
+        jobAppRef.child("byEmployee").child(userUID).child(jobUID).setValue(false)
         
         //Update number of job applications on database
         var val = 1
         let employerUID = self.jobsToApply[0].employer?.uid
-        self.dbRef.child("jobPosts").child(employerUID!).child(jobUID).child("numberOfApplications").observeSingleEvent(of: DataEventType.value) { snapshot in
+        self.dbRef.child("jobPosts").child("byEmployer").child(employerUID!).child(jobUID).child("numberOfApplications").observeSingleEvent(of: DataEventType.value) { snapshot in
             if let i = snapshot.value as? Int{
                 val += i
             }
@@ -255,7 +240,7 @@ class ModelController{
     
     func loadAppliedJobsIds() -> Promise<Bool>{
         return Promise { seal in
-            self.dbRef.child("jobApplications").child("forEmployee").child(self.user.uid).observeSingleEvent(of: DataEventType.value, with: { snapshot in
+            self.dbRef.child("jobApplications").child("byEmployee").child(self.user.uid).observeSingleEvent(of: DataEventType.value, with: { snapshot in
                 let children = snapshot.children
                 while let child = children.nextObject() as? DataSnapshot{
                     self.appliedJobIds[child.key] = child.value as? Bool
@@ -264,8 +249,5 @@ class ModelController{
             seal.fulfill(true)
         }
     }
-    
-    
-    
     
 }

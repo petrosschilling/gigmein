@@ -40,7 +40,6 @@ class ApplicantProfileViewController: UIViewController {
         }else{
             print("Error: user not set in ApplicantProfileViewController")
         }
-        
     }
 
     @IBAction func btnAcceptApplicationClick(_ sender: Any) {

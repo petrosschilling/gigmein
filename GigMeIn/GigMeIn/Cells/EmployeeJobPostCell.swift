@@ -25,7 +25,7 @@ class EmployeeJobPostCell: UITableViewCell{
     func setJobPost(jobPost: JobPost){
         
         self.lblTitle.text = jobPost.title
-        self.lblDescription.text = jobPost.description
+        self.lblDescription.text = jobPost.desc
         self.lblAddress.text = jobPost.address?.fullAddress()
         self.lblPaymentType.text = jobPost.paymentType?.rawValue
         

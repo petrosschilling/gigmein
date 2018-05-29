@@ -47,7 +47,7 @@ class CreateJobPostViewController: UIViewController{
         
         jobPost.employer = modelController.user
         jobPost.title = txtTitle.text!
-        jobPost.description = txtDescription.text
+        jobPost.desc = txtDescription.text
         jobPost.dueDate = dtDueDate.date
         jobPost.dateCreated = Date.init()
         if let rate = txtPaymentRate.text{

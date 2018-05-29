@@ -13,7 +13,7 @@ class JobPost: Entity{
     
     var employer: User?
     var title: String = ""
-    var description: String = ""
+    var desc: String = ""
     var dueDate : Date = Date()
     var address: Address?
     var rate: Double = 0.0
@@ -33,7 +33,7 @@ class JobPost: Entity{
         super.mapping(map: map)
         employer <- map["employer"]
         title <- map["title"]
-        description <- map["description"]
+        desc <- map["desc"]
         dueDate <- map["dueDate"]
         address <- map["address"]
         rate <- map["rate"]

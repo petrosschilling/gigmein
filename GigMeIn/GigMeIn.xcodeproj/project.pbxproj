@@ -7,6 +7,7 @@
 	objects = {
 
 /* Begin PBXBuildFile section */
+		2CF36DE720BD452600C4BF6C /* JobPostDetailsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = 2CF36DE620BD452600C4BF6C /* JobPostDetailsViewController.swift */; };
 		3F16449ED06122C9A48C7FFC /* Pods_GigMeIn.framework in Frameworks */ = {isa = PBXBuildFile; fileRef = 036205D5347AF3B1F650794B /* Pods_GigMeIn.framework */; };
 		AF0065F02092C9C600EC8C0E /* RegisterViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0065EF2092C9C600EC8C0E /* RegisterViewController.swift */; };
 		AF0065F42092D82800EC8C0E /* LoginViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF0065F32092D82800EC8C0E /* LoginViewController.swift */; };
@@ -43,6 +44,7 @@
 
 /* Begin PBXFileReference section */
 		036205D5347AF3B1F650794B /* Pods_GigMeIn.framework */ = {isa = PBXFileReference; explicitFileType = wrapper.framework; includeInIndex = 0; path = Pods_GigMeIn.framework; sourceTree = BUILT_PRODUCTS_DIR; };
+		2CF36DE620BD452600C4BF6C /* JobPostDetailsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobPostDetailsViewController.swift; sourceTree = "<group>"; };
 		430AC41DBB0E7FEAA702F968 /* Pods-GigMeIn.release.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GigMeIn.release.xcconfig"; path = "Pods/Target Support Files/Pods-GigMeIn/Pods-GigMeIn.release.xcconfig"; sourceTree = "<group>"; };
 		AF0065EF2092C9C600EC8C0E /* RegisterViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterViewController.swift; sourceTree = "<group>"; };
 		AF0065F32092D82800EC8C0E /* LoginViewController.swift */ = {isa = PBXFileReference; fileEncoding = 4; lastKnownFileType = sourcecode.swift; path = LoginViewController.swift; sourceTree = "<group>"; };
@@ -121,6 +123,7 @@
 				AF19410F20AFE2820004486A /* JobApplicantsViewController.swift */,
 				AF1C049920BBA5BF002DEB0F /* ApplicantProfileViewController.swift */,
 				AF1C049B20BCECEA002DEB0F /* MyJobApplicationsViewController.swift */,
+				2CF36DE620BD452600C4BF6C /* JobPostDetailsViewController.swift */,
 			);
 			path = ViewController;
 			sourceTree = "<group>";
@@ -341,6 +344,7 @@
 			isa = PBXSourcesBuildPhase;
 			buildActionMask = 2147483647;
 			files = (
+				2CF36DE720BD452600C4BF6C /* JobPostDetailsViewController.swift in Sources */,
 				AF8CC50E209820E100333A1A /* CreateJobPostViewController.swift in Sources */,
 				AF19262920A535E900291042 /* EmployeeMainViewController.swift in Sources */,
 				AF1C049A20BBA5BF002DEB0F /* ApplicantProfileViewController.swift in Sources */,

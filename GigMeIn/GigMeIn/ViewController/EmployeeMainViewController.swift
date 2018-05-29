@@ -34,6 +34,13 @@ class EmployeeMainViewController: UIViewController {
         }.cauterize()
         
     }
+    
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let view = segue.destination as? MyJobApplicationsViewController{
+            view.mc = self.mc
+        }
+    }
+    
     @IBAction func btnLogoutPressed(_ sender: Any) {
         self.mc.logoutUser()
         self.mc.nav.goToLoginStoryboard(viewRedirectionHandler: self, mc: self.mc)
