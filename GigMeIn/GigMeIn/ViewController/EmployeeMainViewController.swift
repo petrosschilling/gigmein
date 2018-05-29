@@ -19,7 +19,7 @@ class EmployeeMainViewController: UIViewController {
     override func viewDidLoad() {
         super.viewDidLoad()
         
-        self.jobTableView.backgroundView = noItemsView
+        self.jobTableView.backgroundView = self.noItemsView
         self.jobTableView.dataSource = self
         self.jobTableView.delegate = self
         

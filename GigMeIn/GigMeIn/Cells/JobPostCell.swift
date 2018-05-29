@@ -19,11 +19,8 @@ class JobPostCell: UITableViewCell {
     
     func setJobPost(jobPost: JobPost){
         self.lblJobPostTitle.text = jobPost.title
-        self.lblJobApplicants.text = "0 applicants"
-
-        if let dueDate = jobPost.dueDate{
-            let formater = DateFormatter.init(withFormat: "dd/MM/yyyy", locale: Locale.current.languageCode!)
-            self.lblDaysLeft.text = "due at " + formater.string(from: dueDate)
-        }
+        self.lblJobApplicants.text = jobPost.numberOfApplications.description + " applicants"
+        let formater = DateFormatter.init(withFormat: "dd/MM/yyyy", locale: Locale.current.languageCode!)
+        self.lblDaysLeft.text = "due at " + formater.string(from: jobPost.dueDate)
     }
 }

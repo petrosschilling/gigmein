@@ -46,22 +46,22 @@ class CreateJobPostViewController: UIViewController{
         jobPost.address = Address.init()
         
         jobPost.employer = modelController.user
-        jobPost.title = txtTitle.text
+        jobPost.title = txtTitle.text!
         jobPost.description = txtDescription.text
         jobPost.dueDate = dtDueDate.date
         jobPost.dateCreated = Date.init()
         if let rate = txtPaymentRate.text{
-            jobPost.rate = Double(rate)
+            jobPost.rate = Double(rate)!
         }
         if let PTraw = segPaymentType.titleForSegment(at: segPaymentType.selectedSegmentIndex){
             jobPost.paymentType = PaymentType(rawValue: PTraw)
         }
-        jobPost.address?.unit = txtUnitNumber.text
-        jobPost.address?.streetNumber = txtStreetNumber.text
-        jobPost.address?.streetName = txtStreet.text
-        jobPost.address?.city = txtCity.text
-        jobPost.address?.state = txtState.text
-        jobPost.address?.postcode = txtPostCode.text
+        jobPost.address?.unit = txtUnitNumber.text!
+        jobPost.address?.streetNumber = txtStreetNumber.text!
+        jobPost.address?.streetName = txtStreet.text!
+        jobPost.address?.city = txtCity.text!
+        jobPost.address?.state = txtState.text!
+        jobPost.address?.postcode = txtPostCode.text!
         
         self.modelController.postJob(jobPost: jobPost)
         

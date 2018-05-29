@@ -11,14 +11,14 @@ import ObjectMapper
 
 class Address: Mappable{
     
-    var unit: String!
-    var streetNumber: String!
-    var streetName: String!
-    var suburb: String!
-    var city: String!
-    var postcode: String!
-    var state: String!
-    var country: String!
+    var unit: String = ""
+    var streetNumber: String = ""
+    var streetName: String = ""
+    var suburb: String = ""
+    var city: String = ""
+    var postcode: String = ""
+    var state: String = ""
+    var country: String = ""
     
     init(){
         

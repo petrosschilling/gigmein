@@ -12,12 +12,14 @@ import ObjectMapper
 class JobPost: Entity{
     
     var employer: User?
-    var title: String?
-    var description: String?
-    var dueDate : Date?
+    var title: String = ""
+    var description: String = ""
+    var dueDate : Date = Date()
     var address: Address?
-    var rate: Double?
+    var rate: Double = 0.0
     var paymentType: PaymentType?
+    
+    var numberOfApplications: Int = 0
     
     override init(){
         super.init()
@@ -36,6 +38,7 @@ class JobPost: Entity{
         address <- map["address"]
         rate <- map["rate"]
         paymentType <- map["paymentType"]
+        numberOfApplications <- map["numberOfApplications"]
     }
     
 }

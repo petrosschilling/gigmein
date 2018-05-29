@@ -61,7 +61,7 @@ class RegisterDetailViewController :UIViewController{
     }
     
     func setUserData(userType: UserType){
-        self.modelController.user.firstName = self.txtFirstName.text
+        self.modelController.user.firstName = self.txtFirstName.text!
         self.modelController.user.phone = self.txtPhone.text
         self.modelController.user.type = userType
         self.modelController.user.uid = (Auth.auth().currentUser?.uid)!;

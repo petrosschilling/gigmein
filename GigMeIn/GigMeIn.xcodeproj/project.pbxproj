@@ -18,6 +18,10 @@
 		AF19262720A40EF200291042 /* EmployeeJobPostCell.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF19262620A40EF200291042 /* EmployeeJobPostCell.swift */; };
 		AF19262920A535E900291042 /* EmployeeMainViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF19262820A535E900291042 /* EmployeeMainViewController.swift */; };
 		AF19410E20AB14CA0004486A /* StoryboardNavigationController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF19410D20AB14CA0004486A /* StoryboardNavigationController.swift */; };
+		AF19411020AFE2820004486A /* JobApplicantsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF19410F20AFE2820004486A /* JobApplicantsViewController.swift */; };
+		AF1C049720BACF58002DEB0F /* UIGradientButton.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF1C049620BACF58002DEB0F /* UIGradientButton.swift */; };
+		AF1C049A20BBA5BF002DEB0F /* ApplicantProfileViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF1C049920BBA5BF002DEB0F /* ApplicantProfileViewController.swift */; };
+		AF1C049C20BCECEA002DEB0F /* MyJobApplicationsViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF1C049B20BCECEA002DEB0F /* MyJobApplicationsViewController.swift */; };
 		AF229CBB206A29C300294331 /* AppDelegate.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF229CBA206A29C300294331 /* AppDelegate.swift */; };
 		AF229CC2206A29C300294331 /* Login.storyboard in Resources */ = {isa = PBXBuildFile; fileRef = AF229CC0206A29C300294331 /* Login.storyboard */; };
 		AF229CC4206A29C300294331 /* Assets.xcassets in Resources */ = {isa = PBXBuildFile; fileRef = AF229CC3206A29C300294331 /* Assets.xcassets */; };
@@ -50,6 +54,10 @@
 		AF19262620A40EF200291042 /* EmployeeJobPostCell.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeJobPostCell.swift; sourceTree = "<group>"; };
 		AF19262820A535E900291042 /* EmployeeMainViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = EmployeeMainViewController.swift; sourceTree = "<group>"; };
 		AF19410D20AB14CA0004486A /* StoryboardNavigationController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = StoryboardNavigationController.swift; sourceTree = "<group>"; };
+		AF19410F20AFE2820004486A /* JobApplicantsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = JobApplicantsViewController.swift; sourceTree = "<group>"; };
+		AF1C049620BACF58002DEB0F /* UIGradientButton.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UIGradientButton.swift; sourceTree = "<group>"; };
+		AF1C049920BBA5BF002DEB0F /* ApplicantProfileViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ApplicantProfileViewController.swift; sourceTree = "<group>"; };
+		AF1C049B20BCECEA002DEB0F /* MyJobApplicationsViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = MyJobApplicationsViewController.swift; sourceTree = "<group>"; };
 		AF229CB7206A29C300294331 /* GigMeIn.app */ = {isa = PBXFileReference; explicitFileType = wrapper.application; includeInIndex = 0; path = GigMeIn.app; sourceTree = BUILT_PRODUCTS_DIR; };
 		AF229CBA206A29C300294331 /* AppDelegate.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = AppDelegate.swift; sourceTree = "<group>"; };
 		AF229CC1206A29C300294331 /* Base */ = {isa = PBXFileReference; lastKnownFileType = file.storyboard; name = Base; path = Base.lproj/Login.storyboard; sourceTree = "<group>"; };
@@ -110,8 +118,19 @@
 				AF0065FA2092F27F00EC8C0E /* JobsPostedViewController.swift */,
 				AF8CC50D209820E100333A1A /* CreateJobPostViewController.swift */,
 				AF19262820A535E900291042 /* EmployeeMainViewController.swift */,
+				AF19410F20AFE2820004486A /* JobApplicantsViewController.swift */,
+				AF1C049920BBA5BF002DEB0F /* ApplicantProfileViewController.swift */,
+				AF1C049B20BCECEA002DEB0F /* MyJobApplicationsViewController.swift */,
 			);
 			path = ViewController;
+			sourceTree = "<group>";
+		};
+		AF1C049520BACEFE002DEB0F /* CustomComponents */ = {
+			isa = PBXGroup;
+			children = (
+				AF1C049620BACF58002DEB0F /* UIGradientButton.swift */,
+			);
+			path = CustomComponents;
 			sourceTree = "<group>";
 		};
 		AF229CAE206A29C300294331 = {
@@ -136,6 +155,7 @@
 		AF229CB9206A29C300294331 /* GigMeIn */ = {
 			isa = PBXGroup;
 			children = (
+				AF1C049520BACEFE002DEB0F /* CustomComponents */,
 				AF3C04DB20A1D310001073DC /* Cells */,
 				AF463E732097D63A0079BC85 /* Utils */,
 				AF9F33BE2096F6B70099A421 /* ModelController */,
@@ -323,6 +343,7 @@
 			files = (
 				AF8CC50E209820E100333A1A /* CreateJobPostViewController.swift in Sources */,
 				AF19262920A535E900291042 /* EmployeeMainViewController.swift in Sources */,
+				AF1C049A20BBA5BF002DEB0F /* ApplicantProfileViewController.swift in Sources */,
 				AF229CD1206A2EF300294331 /* Entity.swift in Sources */,
 				AF229CDF206A861100294331 /* JobApplication.swift in Sources */,
 				AF229CDD206A85A800294331 /* JobApplicationStatus.swift in Sources */,
@@ -335,12 +356,15 @@
 				AF229CD3206A5C9D00294331 /* User.swift in Sources */,
 				AF19410E20AB14CA0004486A /* StoryboardNavigationController.swift in Sources */,
 				AF3C04DA20A1D28C001073DC /* JobPostCell.swift in Sources */,
+				AF1C049C20BCECEA002DEB0F /* MyJobApplicationsViewController.swift in Sources */,
 				AF0065F02092C9C600EC8C0E /* RegisterViewController.swift in Sources */,
 				AF229CE3206A872C00294331 /* JobPost.swift in Sources */,
+				AF19411020AFE2820004486A /* JobApplicantsViewController.swift in Sources */,
 				AF0065F42092D82800EC8C0E /* LoginViewController.swift in Sources */,
 				AF463E752097D65A0079BC85 /* JSONUtil.swift in Sources */,
 				AF229CD7206A5EF000294331 /* Address.swift in Sources */,
 				AF9F33C12096F7AC0099A421 /* ModelController.swift in Sources */,
+				AF1C049720BACF58002DEB0F /* UIGradientButton.swift in Sources */,
 			);
 			runOnlyForDeploymentPostprocessing = 0;
 		};

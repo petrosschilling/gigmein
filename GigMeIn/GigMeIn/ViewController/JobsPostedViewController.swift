@@ -44,6 +44,9 @@ class JobsPostedViewController :UIViewController{
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let createJobPostVC = segue.destination as? CreateJobPostViewController {
             createJobPostVC.modelController = self.mc
+        } else if let viewApplicantsVC = segue.destination as? JobApplicantsViewController, let index = jobsPostedTableView.indexPathForSelectedRow?.row{
+            viewApplicantsVC.mc = self.mc
+            viewApplicantsVC.jobPostIndex = index
         }
     }
     

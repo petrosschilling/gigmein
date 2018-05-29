@@ -28,11 +28,11 @@ class EmployeeJobPostCell: UITableViewCell{
         self.lblDescription.text = jobPost.description
         self.lblAddress.text = jobPost.address?.fullAddress()
         self.lblPaymentType.text = jobPost.paymentType?.rawValue
-        if let dueDate = jobPost.dueDate{
-            let formater = DateFormatter.init(withFormat: "dd/MM/yyyy", locale: Locale.current.languageCode!)
-            self.lblDueDate.text = "due at " + formater.string(from: dueDate)
-        }
-        self.lblCash.text = jobPost.rate?.description
+        
+        let formater = DateFormatter.init(withFormat: "dd/MM/yyyy", locale: Locale.current.languageCode!)
+        self.lblDueDate.text = "due at " + formater.string(from: jobPost.dueDate)
+        
+        self.lblCash.text = jobPost.rate.description
         
     }
 }

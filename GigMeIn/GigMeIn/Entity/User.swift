@@ -11,12 +11,12 @@ import ObjectMapper
 
 class User: Entity{
     var email: String!
-    var address: Address! //ADD LATER to extension transform it as a JSON object
+    var address: Address = Address.init() //ADD LATER to extension transform it as a JSON object
     var phone: String?
     var abn: String?
     var type: UserType!
-    var firstName: String?
-    var surname: String?
+    var firstName: String = ""
+    var surname: String = ""
     
     //Employer 'only' information
     var businessName: String?
@@ -37,7 +37,7 @@ class User: Entity{
     override func mapping(map: Map) {
         super.mapping(map: map)
         email <- map["email"]
-        //address <- map["address"]
+        address <- map["address"]
         phone <- map["phone"]
         abn <- map["abn"]
         type <- map["type"]
@@ -45,6 +45,9 @@ class User: Entity{
         surname <- map["surname"]
     }
     
+    func fullName() -> String{
+        return firstName + " " + surname
+    }
     
 
 }
