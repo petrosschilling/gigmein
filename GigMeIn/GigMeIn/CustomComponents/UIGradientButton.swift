@@ -43,6 +43,12 @@ class UIGradientButton: UIButton {
             layer.startPoint = CGPoint(x: 0.5, y: 0)
             layer.endPoint = CGPoint (x: 0.5, y: 1)
         }
+        layer.cornerRadius = self.cornerRadius
+        layer.shadowColor = UIColor(red: 0, green: 0, blue: 0, alpha: 0.25).cgColor
+        layer.shadowOffset = CGSize(width: 1, height: 1)
+        layer.shadowOpacity = 1.0
+        layer.shadowRadius = 2.0
+        layer.masksToBounds = false
     }
     
     override class var layerClass: AnyClass {

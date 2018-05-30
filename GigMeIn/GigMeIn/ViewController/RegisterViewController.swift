@@ -26,7 +26,7 @@ class RegisterViewController :UIViewController{
         }
     }
     
-    @IBAction func btnCancelPressed(_ sender: UIButton) {
+    @IBAction func btnCancelPressed(_ sender: Any) {
         performSegue(withIdentifier: "RegisterToLoginSegue", sender: self)
     }
     

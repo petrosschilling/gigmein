@@ -40,6 +40,8 @@
 		AF8CC50E209820E100333A1A /* CreateJobPostViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF8CC50D209820E100333A1A /* CreateJobPostViewController.swift */; };
 		AF9F33C12096F7AC0099A421 /* ModelController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF9F33C02096F7AC0099A421 /* ModelController.swift */; };
 		AF9F33C3209713160099A421 /* RegisterDetailViewController.swift in Sources */ = {isa = PBXBuildFile; fileRef = AF9F33C2209713160099A421 /* RegisterDetailViewController.swift */; };
+		AFFF829020BE50C30073A6C0 /* UILoginTextField.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFFF828F20BE50C20073A6C0 /* UILoginTextField.swift */; };
+		AFFF829220BE6CC60073A6C0 /* GradientLabel.swift in Sources */ = {isa = PBXBuildFile; fileRef = AFFF829120BE6CC60073A6C0 /* GradientLabel.swift */; };
 /* End PBXBuildFile section */
 
 /* Begin PBXFileReference section */
@@ -79,6 +81,8 @@
 		AF8CC50D209820E100333A1A /* CreateJobPostViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = CreateJobPostViewController.swift; sourceTree = "<group>"; };
 		AF9F33C02096F7AC0099A421 /* ModelController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = ModelController.swift; sourceTree = "<group>"; };
 		AF9F33C2209713160099A421 /* RegisterDetailViewController.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = RegisterDetailViewController.swift; sourceTree = "<group>"; };
+		AFFF828F20BE50C20073A6C0 /* UILoginTextField.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = UILoginTextField.swift; sourceTree = "<group>"; };
+		AFFF829120BE6CC60073A6C0 /* GradientLabel.swift */ = {isa = PBXFileReference; lastKnownFileType = sourcecode.swift; path = GradientLabel.swift; sourceTree = "<group>"; };
 		D09A1E7D761232C1ABA45D43 /* Pods-GigMeIn.debug.xcconfig */ = {isa = PBXFileReference; includeInIndex = 1; lastKnownFileType = text.xcconfig; name = "Pods-GigMeIn.debug.xcconfig"; path = "Pods/Target Support Files/Pods-GigMeIn/Pods-GigMeIn.debug.xcconfig"; sourceTree = "<group>"; };
 /* End PBXFileReference section */
 
@@ -132,6 +136,8 @@
 			isa = PBXGroup;
 			children = (
 				AF1C049620BACF58002DEB0F /* UIGradientButton.swift */,
+				AFFF828F20BE50C20073A6C0 /* UILoginTextField.swift */,
+				AFFF829120BE6CC60073A6C0 /* GradientLabel.swift */,
 			);
 			path = CustomComponents;
 			sourceTree = "<group>";
@@ -345,10 +351,12 @@
 			buildActionMask = 2147483647;
 			files = (
 				2CF36DE720BD452600C4BF6C /* JobPostDetailsViewController.swift in Sources */,
+				AFFF829220BE6CC60073A6C0 /* GradientLabel.swift in Sources */,
 				AF8CC50E209820E100333A1A /* CreateJobPostViewController.swift in Sources */,
 				AF19262920A535E900291042 /* EmployeeMainViewController.swift in Sources */,
 				AF1C049A20BBA5BF002DEB0F /* ApplicantProfileViewController.swift in Sources */,
 				AF229CD1206A2EF300294331 /* Entity.swift in Sources */,
+				AFFF829020BE50C30073A6C0 /* UILoginTextField.swift in Sources */,
 				AF229CDF206A861100294331 /* JobApplication.swift in Sources */,
 				AF229CDD206A85A800294331 /* JobApplicationStatus.swift in Sources */,
 				AF9F33C3209713160099A421 /* RegisterDetailViewController.swift in Sources */,

@@ -102,7 +102,7 @@
                                 <action selector="btnSignOutPress:" destination="vfV-qS-Mde" id="jMg-x1-Ony"/>
                             </connections>
                         </barButtonItem>
-                        <barButtonItem key="rightBarButtonItem" style="plain" systemItem="add" id="GSm-cr-V2g">
+                        <barButtonItem key="rightBarButtonItem" systemItem="add" id="GSm-cr-V2g">
                             <connections>
                                 <action selector="btnAddJobsPostPress:" destination="vfV-qS-Mde" id="PMQ-ee-zw5"/>
                             </connections>

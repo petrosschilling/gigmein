@@ -66,10 +66,12 @@ class ModelController{
     }
     
     func loadUserProfile(user: FirebaseAuth.User) -> Promise<User>{
+        print("loading user profile")
         return Promise {seal in
             self.dbRef.child("users").child(user.uid).observeSingleEvent(of: DataEventType.value, with:{ (snapshot) in
                 if let value = snapshot.value as? [String: Any]{
                     if let user = Mapper<User>().map(JSON: value){
+                        print("finished loading user profile")
                         seal.fulfill(user)
                     }
                 }
