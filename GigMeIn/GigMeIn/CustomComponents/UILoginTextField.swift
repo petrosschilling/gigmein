@@ -47,7 +47,7 @@ class UILoginTextField: UITextField {
         
         if (!self.isOnlyBottomLine){
             let gradient = CAGradientLayer()
-            gradient.frame =  CGRect(x: 2, y: 0, width: self.frame.width-2, height: 1)
+            gradient.frame =  CGRect(x: 1, y: 0, width: self.frame.width-2, height: 1)
             gradient.colors = [self.firstColor.cgColor, self.secondColor.cgColor]
             gradient.startPoint = CGPoint(x: 0, y: 0.5)
             gradient.endPoint = CGPoint (x: 1, y: 0.5)
@@ -56,7 +56,7 @@ class UILoginTextField: UITextField {
         }
 
         let gradient2 = CAGradientLayer()
-        gradient2.frame =  CGRect(x: 2, y: self.frame.height, width: self.frame.width-2, height: 1)
+        gradient2.frame =  CGRect(x: 1, y: self.frame.height, width: self.frame.width-2, height: 1)
         gradient2.colors = [self.firstColor.cgColor, self.secondColor.cgColor]
         gradient2.startPoint = CGPoint(x: 0, y: 0.5)
         gradient2.endPoint = CGPoint (x: 1, y: 0.5)

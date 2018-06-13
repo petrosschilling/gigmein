@@ -12,6 +12,9 @@ import PromiseKit
 class MyJobApplicationsViewController: UIViewController {
 
     @IBOutlet weak var myJobApplicationsTableView: UITableView!
+    
+    let jobAppliedCellID = "JobAppliedCellID"
+    
     var mc: ModelController!
     
     override func viewDidLoad() {
@@ -41,7 +44,6 @@ class MyJobApplicationsViewController: UIViewController {
     private func updateView(){
         self.myJobApplicationsTableView.reloadData()
         self.myJobApplicationsTableView.endUpdates()
-        print("View updated")
     }
 }
 
@@ -53,7 +55,7 @@ extension MyJobApplicationsViewController: UITableViewDelegate, UITableViewDataS
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         let jobPost = self.mc.jobsApplied[indexPath.row]
-        let cell = tableView.dequeueReusableCell(withIdentifier: "RIDJobApplied")
+        let cell = tableView.dequeueReusableCell(withIdentifier: self.jobAppliedCellID)
         
         cell?.textLabel?.text = jobPost.title
         return cell!
@@ -63,6 +65,9 @@ extension MyJobApplicationsViewController: UITableViewDelegate, UITableViewDataS
         let jobPost = self.mc.jobsApplied[indexPath.row]
         if(self.mc.appliedJobIds[jobPost.uid] == true){
             cell.backgroundColor = UIColor.init(red: 66/255, green: 207/255, blue: 103/255, alpha: 1)
+            cell.detailTextLabel?.text = "Accepted"
+        }else{
+            cell.detailTextLabel?.text = ""
         }
     }
     

@@ -14,48 +14,33 @@ class JobApplicantsViewController: UIViewController{
     
     @IBOutlet weak var tableViewApplicants: UITableView!
     
+    let applicantCellID = "ApplicantCellID"
+    
     var mc: ModelController!
     var usersThatApplied = [User]()
-    
     var jobPostIndex = 0
-    let dispatchGroup1 = DispatchGroup()
-    let dispatchGroup2 = DispatchGroup()
-    
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         let jobPost = self.mc.jobPosts[jobPostIndex]
-        //TODO Test the loading of the users applications
-        //Apply lazy request loading for users profiles
         
-        
-        self.mc.loadJobApplicantsIds(jobPost: jobPost, with: self.dispatchGroup1)
-        self.dispatchGroup1.notify(queue: .main) {
-            self.mc.loadJobApplicants(with: self.dispatchGroup2)
-            self.dispatchGroup2.notify(queue: .main) {
-                print("dispatch.notify called")
+        let dispatchGroup1 = DispatchGroup()
+        self.mc.loadJobApplicantsIds(jobPost: jobPost, with: dispatchGroup1)
+        dispatchGroup1.notify(queue: .main) {
+            let dispatchGroup2 = DispatchGroup()
+            self.mc.loadJobApplicants(with: dispatchGroup2)
+            dispatchGroup2.notify(queue: .main) {
                 self.usersThatApplied = self.mc.jobApplicants
                 self.updateView()
             }
         }
-        
-        
-//        firstly{
-//            self.mc.loadJobApplicantsIds(jobPost: jobPost)
-//        }.then{applicantsIds in
-//            self.mc.loadJobApplicants(userIds: applicantsIds)
-//        }.done{users in
-//            self.usersThatApplied = users
-//            self.updateView()
-//        }.cauterize()
         
     }
     
     private func updateView(){
         self.tableViewApplicants.reloadData()
         self.tableViewApplicants.endUpdates()
-        print("View updated")
     }
     
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
@@ -76,7 +61,7 @@ extension JobApplicantsViewController: UITableViewDataSource, UITableViewDelegat
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
         
-        let cell = tableView.dequeueReusableCell(withIdentifier: "IDApplicantCell")
+        let cell = tableView.dequeueReusableCell(withIdentifier: self.applicantCellID)
         cell?.textLabel?.text = self.usersThatApplied[indexPath.row].firstName
         
         return cell!

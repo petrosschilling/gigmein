@@ -51,7 +51,7 @@ class GradientLabel: UILabel {
         context.drawLinearGradient(
             gradient,
             start: CGPoint.zero,
-            end: CGPoint(x: size.width, y: 0), // Horizontal gradient
+            end: CGPoint(x: size.width + 100, y: 0), // Horizontal gradient
             options: []
         )
         

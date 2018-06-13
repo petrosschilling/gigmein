@@ -1,65 +1,74 @@
 //
-//  CreateJobPostViewController.swift
+//  EditJobPostViewController.swift
 //  GigMeIn
 //
-//  Created by Petros Schilling on 1/5/18.
+//  Created by Petros Schilling on 11/6/18.
 //  Copyright © 2018 Petros Schilling. All rights reserved.
 //
 
-import Foundation
 import UIKit
 
-class CreateJobPostViewController: UIViewController, UITextFieldDelegate{
-    
+class EditJobPostViewController: UIViewController, UITextFieldDelegate {
+
     @IBOutlet weak var txtTitle: UITextField!
+    @IBOutlet weak var txtRate: UITextField!
     @IBOutlet weak var txtDescription: UITextView!
-    @IBOutlet weak var dtDueDate: UIDatePicker!
-    @IBOutlet weak var txtPaymentRate: UITextField!
-    @IBOutlet weak var txtUnitNumber: UITextField!
-    @IBOutlet weak var txtStreetNumber: UITextField!
+    @IBOutlet weak var dateDue: UIDatePicker!
+    @IBOutlet weak var txtUnit: UITextField!
+    @IBOutlet weak var txtNumber: UITextField!
     @IBOutlet weak var txtStreet: UITextField!
     @IBOutlet weak var txtCity: UITextField!
     @IBOutlet weak var txtPostCode: UITextField!
     @IBOutlet weak var txtState: UITextField!
     
-    var modelController: ModelController!
+    var mc: ModelController!
+    var postToEdit: JobPost!
     
     var activeTextField = UITextField()
     
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hideKeyboardWhenTappedAround()
-        self.initToolBar()
+        self.bindJobPostDataToView()
         
         NotificationCenter.default.addObserver(self, selector: #selector(CreateJobPostViewController.keyboardWillShow(sender:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         
         NotificationCenter.default.addObserver(self, selector: #selector(CreateJobPostViewController.keyboardWillHide(sender:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
-
     }
     
-    @IBAction func btnPostJobClick(_ sender: UIButton) {
+    func bindJobPostDataToView(){
+        self.txtTitle.text = self.postToEdit.title
+        self.txtDescription.text = self.postToEdit.desc
+        self.dateDue.date = self.postToEdit.dueDate
+        self.txtRate.text = self.postToEdit.rate.description
+        self.txtUnit.text = self.postToEdit.address?.unit
+        self.txtNumber.text = self.postToEdit.address?.streetNumber
+        self.txtStreet.text = self.postToEdit.address?.streetName
+        self.txtCity.text = self.postToEdit.address?.city
+        self.txtPostCode.text = self.postToEdit.address?.postcode
+        self.txtState.text = self.postToEdit.address?.state
+    }
     
+    @IBAction func btnSavePressed(_ sender: Any) {
         //TODO validate all fields
         
-        let jobPost: JobPost = JobPost()
-        jobPost.address = Address.init()
+        self.postToEdit.address = Address.init()
         
-        jobPost.employer = modelController.user
-        jobPost.title = txtTitle.text!
-        jobPost.desc = txtDescription.text
-        jobPost.dueDate = dtDueDate.date
-        jobPost.dateCreated = Date.init()
-        if let rate = txtPaymentRate.text{
-            jobPost.rate = Double(rate)!
+        self.postToEdit.employer = self.mc.user
+        self.postToEdit.title = txtTitle.text!
+        self.postToEdit.desc = txtDescription.text
+        self.postToEdit.dueDate = dateDue.date
+        if let rate = self.txtRate.text{
+            self.postToEdit.rate = Double(rate)!
         }
-        jobPost.address?.unit = txtUnitNumber.text!
-        jobPost.address?.streetNumber = txtStreetNumber.text!
-        jobPost.address?.streetName = txtStreet.text!
-        jobPost.address?.city = txtCity.text!
-        jobPost.address?.state = txtState.text!
-        jobPost.address?.postcode = txtPostCode.text!
+        self.postToEdit.address?.unit = txtUnit.text!
+        self.postToEdit.address?.streetNumber = self.txtNumber.text!
+        self.postToEdit.address?.streetName = self.txtStreet.text!
+        self.postToEdit.address?.city = self.txtCity.text!
+        self.postToEdit.address?.state = self.txtState.text!
+        self.postToEdit.address?.postcode = self.txtPostCode.text!
         
-        self.modelController.postJob(jobPost: jobPost)
+        self.mc.updateJobPost(jobPost: postToEdit)
         
         self.navigationController?.popViewController(animated: true)
     }
@@ -98,9 +107,9 @@ class CreateJobPostViewController: UIViewController, UITextFieldDelegate{
         toolbar.setItems([flexSpace, doneBtn], animated: false)
         toolbar.sizeToFit()
         //setting toolbar as inputAccessoryView
-        self.txtUnitNumber.inputAccessoryView = toolbar
-        self.txtStreetNumber.inputAccessoryView = toolbar
-        self.txtPaymentRate.inputAccessoryView = toolbar
+        self.txtUnit.inputAccessoryView = toolbar
+        self.txtStreet.inputAccessoryView = toolbar
+        self.txtRate.inputAccessoryView = toolbar
         self.txtDescription.inputAccessoryView = toolbar
     }
     
@@ -112,56 +121,6 @@ class CreateJobPostViewController: UIViewController, UITextFieldDelegate{
         self.view.frame.origin.y = 0 // Move view to original position
     }
     
-    //MARK: - Validation Methods
     
-    func isTitleValid() -> Bool{
-        //TODO
-        return true
-    }
-    
-    func isDescriptionValid() -> Bool{
-        //TODO
-        return true
-    }
-    
-    func isDueDateValid() -> Bool{
-        //TODO
-        return true
-    }
-    
-    func isPaymentRateValid() -> Bool{
-        //TODO
-        return true
-    }
-    
-    func isUnitNumberValid() -> Bool{
-        //TODO
-        return true
-    }
-    
-    func isStreetNumberValid() -> Bool{
-        //TODO
-        return true
-    }
-    
-    func isStreetValid() -> Bool{
-        //TODO
-        return true
-    }
-    
-    func isCityValid() -> Bool{
-        //TODO
-        return true
-    }
-    
-    func isPostcodeValid() -> Bool{
-        //TODO
-        return true
-    }
-    
-    func isStateValid() -> Bool{
-        //TODO
-        return true
-    }
     
 }

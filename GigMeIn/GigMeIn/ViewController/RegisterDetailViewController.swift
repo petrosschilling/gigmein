@@ -8,80 +8,114 @@
 
 import Foundation
 import UIKit
-import Firebase
-import FirebaseDatabase
+import PromiseKit
 import FirebaseAuth
 
 class RegisterDetailViewController :UIViewController{
     
     @IBOutlet weak var txtFirstName: UITextField!
+    @IBOutlet weak var txtLastName: UITextField!
     @IBOutlet weak var txtPhone: UITextField!
+    @IBOutlet weak var switchTypeOfUser: UISwitch!
+    @IBOutlet weak var lblWork: UILabel!
+    @IBOutlet weak var lblStaff: UILabel!
     
-    var modelController: ModelController!
-    var userTypeArray = [UserType.EMPLOYEE, UserType.EMPLOYER]
-    var dbRef: DatabaseReference! = Database.database().reference()
-
+    let userTypeArray = [UserType.EMPLOYEE, UserType.EMPLOYER]
+    
+    var mc: ModelController!
+    
     override func viewDidLoad() {
         super.viewDidLoad()
+        self.hideKeyboardWhenTappedAround()
+        self.lblStaff.isEnabled = false
     }
     
-    @IBAction func btnLookingJobClick(_ sender: UIButton) {
+    override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
+        if let nc = segue.destination as? UINavigationController{
+            if let jobsPostedVC =  nc.childViewControllers[0] as? JobsPostedViewController{
+                jobsPostedVC.mc = self.mc
+            } else if let employeeMainVC =  nc.childViewControllers[0] as? EmployeeMainViewController{
+                employeeMainVC.mc = self.mc
+            }
+        }
+    }
+    
+    @IBAction func switchUserTypeStateChanged(_ sender: Any) {
+        self.lblStaff.isEnabled = self.switchTypeOfUser.isOn
+        self.lblWork.isEnabled = !self.switchTypeOfUser.isOn
+    }
+    
+    @IBAction func btnNextPressed(_ sender: Any) {
         if(!isNameValid()){
+            return
+        }
+        if(!isSurnameValid()){
             return
         }
         if (!isPhoneValid()){
             return
         }
-        self.setUserData(userType: UserType.EMPLOYEE)
-        self.saveUserDetails()
-        if let user = Auth.auth().currentUser{
-            self.modelController.loadUserProfile(user: user).cauterize()
+        
+        if(self.switchTypeOfUser.isOn){
+            self.setUserData(userType: UserType.EMPLOYER)
+        }else{
+            self.setUserData(userType: UserType.EMPLOYEE)
         }
-    }
-    
-    @IBAction func btnLookingForPeopleClick(_ sender: UIButton) {
-        if(!isNameValid()){
-            return
+        self.mc.saveUserDetails()
+        if let user = self.mc.getFirebaseUser(){
+            firstly{
+                self.mc.loadUserProfile(user: user)
+            }.done{ user in
+                if(user.type == UserType.EMPLOYER){
+                    self.performSegue(withIdentifier: "RegisterToEmployerSegue", sender: self)
+                }else if(user.type == UserType.EMPLOYEE){
+                    self.performSegue(withIdentifier: "RegisterToEmployeeSegue", sender: self)
+                }
+            }.cauterize()
         }
-        if (!isPhoneValid()){
-            return
-        }
-        self.setUserData(userType: UserType.EMPLOYER)
-        self.saveUserDetails()
-        if let user = Auth.auth().currentUser{
-            self.modelController.loadUserProfile(user: user).cauterize()
-        }
-    }
-    
-    func saveUserDetails(){
-        self.updateUserDisplayNameInFirebase()
-        let uid = self.modelController.user.uid
-        let userJSON = self.modelController.user.toJSON()
-        self.dbRef.child("users").child(uid).setValue(userJSON)
     }
     
     func setUserData(userType: UserType){
-        self.modelController.user.firstName = self.txtFirstName.text!
-        self.modelController.user.phone = self.txtPhone.text
-        self.modelController.user.type = userType
-        self.modelController.user.uid = (Auth.auth().currentUser?.uid)!;
-    }
-    
-    func updateUserDisplayNameInFirebase(){
-        let changeRequest = Auth.auth().currentUser?.createProfileChangeRequest()
-        changeRequest?.displayName = self.modelController.user.firstName
-        changeRequest?.commitChanges { (error) in
-            print("An error has occurred while trying to update users displayName")
-        }
+        self.mc.user.firstName = self.txtFirstName.text!
+        self.mc.user.surname = self.txtLastName.text!
+        self.mc.user.phone = self.txtPhone.text
+        self.mc.user.type = userType
+        self.mc.user.uid = (Auth.auth().currentUser?.uid)!;
     }
     
     func isNameValid() -> Bool {
-        //TODO
+        let firstName = Sanitizer.trim(text: self.txtFirstName.text!)
+        if(firstName.count == 0){
+            AlertUtils.showAlertWithOk(title: "Name is invalid", message: "Name cannot be empty", vc: self)
+            return false
+        }else if(firstName.count > 40){
+            AlertUtils.showAlertWithOk(title: "Name is invalid", message: "Name is too long", vc: self)
+            return false
+        }
+        return true
+    }
+    
+    func isSurnameValid() -> Bool{
+        let surname = Sanitizer.trim(text: self.txtLastName.text!)
+        if(surname.count == 0){
+            AlertUtils.showAlertWithOk(title: "Surname is invalid", message: "Surname cannot be empty", vc: self)
+            return false
+        }else if(surname.count > 40){
+            AlertUtils.showAlertWithOk(title: "Surname is invalid", message: "Surname is too long", vc: self)
+            return false
+        }
         return true
     }
     
     func isPhoneValid() -> Bool {
-        //TODO
+        let phone = Sanitizer.trim(text: self.txtPhone.text!)
+        if(!CharacterSet.decimalDigits.isSuperset(of: CharacterSet(charactersIn: phone))){
+            AlertUtils.showAlertWithOk(title: "Phone is invalid", message: "Phone contains non-numeric characters", vc: self)
+            return false
+        }else if(phone.count < 10 || phone.count > 12){
+            AlertUtils.showAlertWithOk(title: "Phone is invalid", message: "Phone must have between 10 and 12 digits", vc: self)
+            return false
+        }
         return true
     }
     

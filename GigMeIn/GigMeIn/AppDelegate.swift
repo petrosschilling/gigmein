@@ -8,6 +8,7 @@
 
 import UIKit
 import Firebase
+import PromiseKit
 
 @UIApplicationMain
 class AppDelegate: UIResponder, UIApplicationDelegate {
@@ -18,13 +19,17 @@ class AppDelegate: UIResponder, UIApplicationDelegate {
     func application(_ application: UIApplication, didFinishLaunchingWithOptions launchOptions: [UIApplicationLaunchOptionsKey: Any]?) -> Bool {
         
         FirebaseApp.configure()
-        if let loginViewController = self.window?.rootViewController as? LoginViewController {
-            loginViewController.mc = ModelController()
-        }
-        
-        
 
+        if let loadingViewController = self.window?.rootViewController as? LoadingViewController {
+            loadingViewController.mc = ModelController()
+        }
         return true
+    }
+    
+    func redirectToStoryBoard(storyBoardName: String, viewControllerID: String) -> UIViewController{
+        let mainStoryboard : UIStoryboard = UIStoryboard(name: storyBoardName, bundle: nil)
+        let initialViewController : UIViewController = mainStoryboard.instantiateViewController(withIdentifier: viewControllerID) as UIViewController
+        return initialViewController
     }
 
     func applicationWillResignActive(_ application: UIApplication) {

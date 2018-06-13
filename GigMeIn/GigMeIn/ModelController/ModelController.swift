@@ -18,7 +18,6 @@ class ModelController{
     
     //general vars
     let dbRef: DatabaseReference = Database.database().reference()
-    let nav: StoryboardNavigationController = StoryboardNavigationController()
     var user: User = User(email: "")
 
     //employer vars
@@ -43,40 +42,49 @@ class ModelController{
         self.user = User(email: "")
     }
     
+    func getFirebaseUser() -> FirebaseAuth.User?{
+        return Auth.auth().currentUser
+    }
+    
+    func getFirebaseUserUID() -> String{
+        return (getFirebaseUser()?.uid)!
+    }
+    
     func logoutUser(){
         do{
             try Auth.auth().signOut()
             self.reset()
         }catch{
-            print("Error while signing out")
+            print("ModelController Error: Error while signing out")
         }
     }
     
-    func loadUserProfile(user: FirebaseAuth.User, redirectionHandler: UIViewController){
-        firstly{
-            self.loadUserProfile(user: user)
-        }.done{ user in
-            if(user.type == UserType.EMPLOYER){
-                self.nav.goToEmployerStoryBoard(viewRedirectionHandler: redirectionHandler, mc: self)
-            }else if(user.type == UserType.EMPLOYEE){
-                self.nav.goToEmployeeStoryBoard(viewRedirectionHandler: redirectionHandler, mc: self)
-            }
-            self.user = user
-        }.cauterize()
-    }
-    
     func loadUserProfile(user: FirebaseAuth.User) -> Promise<User>{
-        print("loading user profile")
+        print("ModelController: Loading user profile")
         return Promise {seal in
+            
+            if(!self.user.uid.isEmpty){
+                seal.fulfill(self.user)
+            }
+            
             self.dbRef.child("users").child(user.uid).observeSingleEvent(of: DataEventType.value, with:{ (snapshot) in
+                if (!snapshot.exists()){
+                    seal.reject(NSError())
+                }
                 if let value = snapshot.value as? [String: Any]{
                     if let user = Mapper<User>().map(JSON: value){
-                        print("finished loading user profile")
+                        print("ModelController: Finished loading user profile")
                         seal.fulfill(user)
                     }
                 }
             })
         }
+    }
+    
+    func saveUserDetails(){
+        let uid = self.user.uid
+        let userJSON = self.user.toJSON()
+        self.dbRef.child("users").child(uid).setValue(userJSON)
     }
 
     //MARK: - EMPLOYER METHODS
@@ -84,7 +92,8 @@ class ModelController{
     func loadJobsPostedByLoggedUser() -> Promise<Bool>{
         
         return Promise { seal in
-            self.dbRef.child("jobPosts").child(self.user.uid).observeSingleEvent(of: DataEventType.value, with:{ (snapshot) in
+            self.dbRef.child("jobPosts").child("byEmployer").child(self.user.uid).observeSingleEvent(of:
+                DataEventType.value, with:{ (snapshot) in
                 let children = snapshot.children
                 while let child = children.nextObject() as? DataSnapshot{
                     if let value = child.value as? [String: Any],
@@ -119,21 +128,21 @@ class ModelController{
         let jobPostId = jobPost.uid
         
         self.dbRef.child("jobApplications").child("byJobPost").child(jobPostId).observeSingleEvent(of: DataEventType.value, with:{ (snapshot) in
-            print("loading users ids")
+            print("ModelController: Loading applicants")
             let children = snapshot.children
             while let child = children.nextObject() as? DataSnapshot{
                 self.applicantsIds.append(child.key)
             }
-            print("loading users ids finnished")
+            print("ModelController: Loading applicants finished")
             dispatch.leave()
         })
     }
     
     func loadJobApplicants(with dispatch: DispatchGroup){// -> Promise<[User]>{
         dispatch.enter()
+        self.jobApplicants.removeAll()
         for s in self.applicantsIds{
             self.dbRef.child("users").queryOrderedByKey().queryEqual(toValue: s).observeSingleEvent(of: DataEventType.value, with: { (snap) in
-                print("loading user " + s)
                 let uChildren = snap.children
                 if let child = uChildren.nextObject() as? DataSnapshot{
                     if let uVal = child.value as? [String:Any]{
@@ -148,6 +157,27 @@ class ModelController{
         }
     }
     
+    func deleteJobPost(postIndex: Int){
+        
+        let postId = self.jobPosts[postIndex].uid
+        
+        self.dbRef.child("jobPosts").child("all").child(postId).removeValue()
+        self.dbRef.child("jobPosts").child("byEmployer").child(user.uid).child(postId).removeValue()
+        self.dbRef.child("jobApplications").child("byJobPost").child(postId).removeValue()
+        
+        self.dbRef.child("jobApplications").child("byEmployee").observeSingleEvent(of: .value) { (snapshot) in
+            let children = snapshot.children
+            while let child = children.nextObject() as? DataSnapshot{
+                self.dbRef.child("jobApplications").child("byEmployee").child(child.key).child(postId).removeValue()
+            }
+        }
+        self.jobPosts.remove(at: postIndex)
+    }
+    
+    func updateJobPost(jobPost: JobPost){
+        self.dbRef.child("jobPosts").child("all").child(jobPost.uid).setValue(jobPost)
+        self.dbRef.child("jobPosts").child("byEmployer").child(self.user.uid).child(jobPost.uid).setValue(jobPost.toJSON())
+    }
     
     //MARK: - EMPLOYEE METHODS
     
@@ -183,7 +213,6 @@ class ModelController{
         for postId in self.appliedJobIds{
             self.dbRef.child("jobPosts").child("all").queryOrderedByKey().queryEqual(toValue: postId.key).observeSingleEvent(of: DataEventType.value, with: { (snapshot) in
                 
-                print("loading job " + postId.key)
                 let children = snapshot.children
                 if let child = children.nextObject() as? DataSnapshot{
                     if let post = child.value as? [String:Any]{
@@ -191,9 +220,7 @@ class ModelController{
                         self.jobsApplied.append(p!)
                     }
                 }
-                print("finished loading " + postId.key)
                 if(self.jobsApplied.count == self.appliedJobIds.count){
-                    print("Finished loading all applications!")
                     dispatch.leave()
                 }
             })
@@ -222,7 +249,8 @@ class ModelController{
                 val += i
             }
         }
-        self.dbRef.child("jobPosts").child(employerUID!).child(jobUID).child("numberOfApplications").setValue(val)
+        self.dbRef.child("jobPosts").child("byEmployer").child(employerUID!).child(jobUID).child("numberOfApplications").setValue(val)
+        self.dbRef.child("jobPosts").child("all").child(employerUID!).child(jobUID).child("numberOfApplications").setValue(val)
         
         self.appliedJobIds[self.jobsToApply[0].uid] = true //??? whats this for? I dont remeber
         self.jobsToApply.remove(at: 0)

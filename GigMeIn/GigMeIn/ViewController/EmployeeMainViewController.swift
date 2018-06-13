@@ -14,12 +14,18 @@ class EmployeeMainViewController: UIViewController {
 
     @IBOutlet weak var jobTableView: UITableView!
     @IBOutlet var noItemsView: UIView!
+    
+    let logoutSegueID = "LogoutSegue"
+    let employeeJobPostCellID = "EmployeeJobPostCellID"
+    
     var mc: ModelController!
     
     override func viewDidLoad() {
         super.viewDidLoad()
         
         self.jobTableView.backgroundView = self.noItemsView
+        self.jobTableView.setNeedsLayout()
+        self.jobTableView.layoutIfNeeded()
         self.jobTableView.dataSource = self
         self.jobTableView.delegate = self
         
@@ -38,22 +44,28 @@ class EmployeeMainViewController: UIViewController {
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let view = segue.destination as? MyJobApplicationsViewController{
             view.mc = self.mc
+        } else if let loadingVC = segue.destination as? LoadingViewController {
+            loadingVC.mc = self.mc
         }
     }
     
     @IBAction func btnLogoutPressed(_ sender: Any) {
         self.mc.logoutUser()
-        self.mc.nav.goToLoginStoryboard(viewRedirectionHandler: self, mc: self.mc)
+        performSegue(withIdentifier: self.logoutSegueID, sender: self)
     }
     
     @IBAction func btnRejectPressed(_ sender: Any) {
-        self.mc.rejectJob()
-        self.updateView()
+        if(self.mc.jobsToApply.count > 0){
+            self.mc.rejectJob()
+            self.updateView()
+        }
     }
     
     @IBAction func btnAcceptPressed(_ sender: Any) {
-        self.mc.acceptJob()
-        self.updateView()
+        if(self.mc.jobsToApply.count > 0){
+            self.mc.acceptJob()
+            self.updateView()
+        }
     }
     
     private func updateView(){
@@ -73,7 +85,7 @@ extension EmployeeMainViewController: UITableViewDataSource, UITableViewDelegate
     }
     
     func tableView(_ tableView: UITableView, cellForRowAt indexPath: IndexPath) -> UITableViewCell {
-        let cell = tableView.dequeueReusableCell(withIdentifier: "RIDEmployeeJobPostCell") as! EmployeeJobPostCell
+        let cell = tableView.dequeueReusableCell(withIdentifier: self.employeeJobPostCellID) as! EmployeeJobPostCell
         if let jobPost = self.mc.jobsToApply.first{
             cell.setJobPost(jobPost: jobPost)
         }
