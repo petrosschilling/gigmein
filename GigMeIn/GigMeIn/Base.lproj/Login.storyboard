@@ -18,7 +18,7 @@
                         <rect key="frame" x="0.0" y="0.0" width="375" height="667"/>
                         <autoresizingMask key="autoresizingMask" widthSizable="YES" heightSizable="YES"/>
                         <subviews>
-                            <imageView userInteractionEnabled="NO" contentMode="center" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gigmin" translatesAutoresizingMaskIntoConstraints="NO" id="NKY-Qo-xE4">
+                            <imageView userInteractionEnabled="NO" contentMode="scaleAspectFit" horizontalHuggingPriority="251" verticalHuggingPriority="251" image="gigmin" translatesAutoresizingMaskIntoConstraints="NO" id="NKY-Qo-xE4">
                                 <rect key="frame" x="85" y="180" width="204" height="71"/>
                                 <constraints>
                                     <constraint firstAttribute="height" constant="71" id="jzy-AF-YyD"/>
@@ -520,8 +520,9 @@
         <image name="gigmin" width="404" height="140"/>
     </resources>
     <inferredMetricsTieBreakers>
+        <segue reference="Kf9-iP-KDQ"/>
         <segue reference="I6H-xC-FmT"/>
-        <segue reference="Mwx-MR-Ljo"/>
-        <segue reference="eUa-gF-Niv"/>
+        <segue reference="9kt-uh-SCP"/>
+        <segue reference="MMX-FB-1EM"/>
     </inferredMetricsTieBreakers>
 </document>

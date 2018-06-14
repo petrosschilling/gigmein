@@ -15,7 +15,7 @@ class Entity: Equatable, Mappable {
     var dateCreated: Date = nil ?? Date.init()
     
     init(){
-        dateCreated = Date.init()
+        //dateCreated = Date.init()
     }
     
     static func ==(lhs: Entity, rhs: Entity) -> Bool {

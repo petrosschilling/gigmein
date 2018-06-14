@@ -34,7 +34,7 @@ class JobPost: Entity{
         employer <- map["employer"]
         title <- map["title"]
         desc <- map["desc"]
-        dueDate <- map["dueDate"]
+        dueDate <- (map["dueDate"], DateTransform())
         address <- map["address"]
         rate <- map["rate"]
         paymentType <- map["paymentType"]

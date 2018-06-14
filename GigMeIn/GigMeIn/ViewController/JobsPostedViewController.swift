@@ -60,7 +60,15 @@ class JobsPostedViewController :UIViewController{
     
     @IBAction func btnSOut(_ sender: Any) {
         self.mc.logoutUser()
-        performSegue(withIdentifier: self.logoutSegueID, sender: self)
+        //performSegue(withIdentifier: self.logoutSegueID, sender: self)
+        self.goToLoginStoryboard()
+    }
+    
+    func goToLoginStoryboard(){
+        let loginSB = UIStoryboard(name: "Login", bundle: nil)
+        let loginVC = loginSB.instantiateViewController(withIdentifier: "LoginStoryID") as! LoginViewController
+        loginVC.mc = self.mc
+        self.present(loginVC, animated: true, completion: nil)
     }
     
     @IBAction func btnAddJobsPostPress(_ sender: Any) {

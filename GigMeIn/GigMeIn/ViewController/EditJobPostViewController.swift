@@ -6,6 +6,7 @@
 //  Copyright © 2018 Petros Schilling. All rights reserved.
 //
 
+import Foundation
 import UIKit
 
 class EditJobPostViewController: UIViewController, UITextFieldDelegate {
@@ -29,17 +30,19 @@ class EditJobPostViewController: UIViewController, UITextFieldDelegate {
     override func viewDidLoad() {
         super.viewDidLoad()
         self.hideKeyboardWhenTappedAround()
+        self.initToolBar()
         self.bindJobPostDataToView()
         
-        NotificationCenter.default.addObserver(self, selector: #selector(CreateJobPostViewController.keyboardWillShow(sender:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(EditJobPostViewController.keyboardWillShow(sender:)), name: NSNotification.Name.UIKeyboardWillShow, object: nil)
         
-        NotificationCenter.default.addObserver(self, selector: #selector(CreateJobPostViewController.keyboardWillHide(sender:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
+        NotificationCenter.default.addObserver(self, selector: #selector(EditJobPostViewController.keyboardWillHide(sender:)), name: NSNotification.Name.UIKeyboardWillHide, object: nil)
     }
     
     func bindJobPostDataToView(){
         self.txtTitle.text = self.postToEdit.title
         self.txtDescription.text = self.postToEdit.desc
         self.dateDue.date = self.postToEdit.dueDate
+        //self.dateDue.setDate(self.postToEdit.dueDate, animated: false)
         self.txtRate.text = self.postToEdit.rate.description
         self.txtUnit.text = self.postToEdit.address?.unit
         self.txtNumber.text = self.postToEdit.address?.streetNumber
@@ -50,7 +53,10 @@ class EditJobPostViewController: UIViewController, UITextFieldDelegate {
     }
     
     @IBAction func btnSavePressed(_ sender: Any) {
-        //TODO validate all fields
+        
+        if(!self.runValidations()){
+            return
+        }
         
         self.postToEdit.address = Address.init()
         
@@ -89,6 +95,10 @@ class EditJobPostViewController: UIViewController, UITextFieldDelegate {
         
     }
     
+    @objc func keyboardWillHide(sender: NSNotification) {
+        self.view.frame.origin.y = 0 // Move view to original position
+    }
+    
     func textFieldDidBeginEditing(_ textField: UITextField) {
         self.activeTextField = textField
     }
@@ -103,24 +113,108 @@ class EditJobPostViewController: UIViewController, UITextFieldDelegate {
         let toolbar:UIToolbar = UIToolbar(frame: CGRect(x: 0, y: 0,  width: self.view.frame.size.width, height: 30))
         //create left side empty space so that done button set on right side
         let flexSpace = UIBarButtonItem(barButtonSystemItem:    .flexibleSpace, target: nil, action: nil)
-        let doneBtn: UIBarButtonItem = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(CreateJobPostViewController.doneButtonAction))
+        let doneBtn: UIBarButtonItem = UIBarButtonItem(title: "Done", style: .done, target: self, action: #selector(EditJobPostViewController.doneButtonAction))
         toolbar.setItems([flexSpace, doneBtn], animated: false)
         toolbar.sizeToFit()
         //setting toolbar as inputAccessoryView
         self.txtUnit.inputAccessoryView = toolbar
-        self.txtStreet.inputAccessoryView = toolbar
+        self.txtNumber.inputAccessoryView = toolbar
         self.txtRate.inputAccessoryView = toolbar
         self.txtDescription.inputAccessoryView = toolbar
+        self.txtPostCode.inputAccessoryView = toolbar
     }
     
     @objc func doneButtonAction() {
         self.view.endEditing(true)
     }
     
-    @objc func keyboardWillHide(sender: NSNotification) {
-        self.view.frame.origin.y = 0 // Move view to original position
+    
+    
+    //MARK: - Validation Methods
+    
+    func runValidations() -> Bool{
+        return isTitleValid() && isDescriptionValid() && isDueDateValid() && isPaymentRateValid() && isUnitNumberValid() && isStreetNumberValid() && isStreetValid() && isCityValid() && isPostcodeValid() && isStateValid()
     }
     
+    func isTitleValid() -> Bool{
+        if(self.txtTitle.text?.count == 0){
+            AlertUtils.showAlertWithOk(title: "Oops!", message: "You must fill the Title", vc: self)
+            return false
+        }
+        return true
+    }
+    
+    func isDescriptionValid() -> Bool{
+        if(self.txtDescription.text?.count == 0){
+            AlertUtils.showAlertWithOk(title: "Oops!", message: "You must fill the Description", vc: self)
+            return false
+        }
+        return true
+    }
+    
+    func isDueDateValid() -> Bool{
+        if(self.dateDue.date <= Date()){
+            AlertUtils.showAlertWithOk(title: "Oops!", message: "The date cannot be in the past", vc: self)
+            return false
+        }
+        return true
+    }
+    
+    func isPaymentRateValid() -> Bool{
+        if(self.txtRate.text?.count == 0){
+            AlertUtils.showAlertWithOk(title: "Oops!", message: "You must fill the Payment rate", vc: self)
+            return false
+        }
+        return true
+    }
+    
+    func isUnitNumberValid() -> Bool{
+        if(self.txtUnit.text?.count == 0){
+            AlertUtils.showAlertWithOk(title: "Oops!", message: "You must fill the Unit for the address", vc: self)
+            return false
+        }
+        return true
+    }
+    
+    func isStreetNumberValid() -> Bool{
+        if(self.txtNumber.text?.count == 0){
+            AlertUtils.showAlertWithOk(title: "Oops!", message: "You must fill the Street number for the address", vc: self)
+            return false
+        }
+        return true
+    }
+    
+    func isStreetValid() -> Bool{
+        if(self.txtStreet.text?.count == 0){
+            AlertUtils.showAlertWithOk(title: "Oops!", message: "You must fill the Street for the address", vc: self)
+            return false
+        }
+        return true
+    }
+    
+    func isCityValid() -> Bool{
+        if(self.txtCity.text?.count == 0){
+            AlertUtils.showAlertWithOk(title: "Oops!", message: "You must fill the City for the address", vc: self)
+            return false
+        }
+        return true
+    }
+    
+    func isPostcodeValid() -> Bool{
+        if(self.txtPostCode.text?.count == 0){
+            AlertUtils.showAlertWithOk(title: "Oops!", message: "You must fill the Postcode for the address", vc: self)
+            return false
+        }
+        return true
+    }
+    
+    func isStateValid() -> Bool{
+        if(self.txtState.text?.count == 0){
+            AlertUtils.showAlertWithOk(title: "Oops!", message: "You must fill the State for the address", vc: self)
+            return false
+        }
+        return true
+    }
     
     
 }

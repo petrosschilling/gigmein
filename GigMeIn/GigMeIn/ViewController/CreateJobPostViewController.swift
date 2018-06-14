@@ -39,7 +39,9 @@ class CreateJobPostViewController: UIViewController, UITextFieldDelegate{
     
     @IBAction func btnPostJobClick(_ sender: UIButton) {
     
-        //TODO validate all fields
+        if(!runValidations()){
+            return
+        }
         
         let jobPost: JobPost = JobPost()
         jobPost.address = Address.init()
@@ -102,6 +104,7 @@ class CreateJobPostViewController: UIViewController, UITextFieldDelegate{
         self.txtStreetNumber.inputAccessoryView = toolbar
         self.txtPaymentRate.inputAccessoryView = toolbar
         self.txtDescription.inputAccessoryView = toolbar
+        self.txtPostCode.inputAccessoryView = toolbar
     }
     
     @objc func doneButtonAction() {
@@ -114,53 +117,87 @@ class CreateJobPostViewController: UIViewController, UITextFieldDelegate{
     
     //MARK: - Validation Methods
     
+    func runValidations() -> Bool{
+        return isTitleValid() && isDescriptionValid() && isDueDateValid() && isPaymentRateValid() && isUnitNumberValid() && isStreetNumberValid() && isStreetValid() && isCityValid() && isPostcodeValid() && isStateValid()
+    }
+    
     func isTitleValid() -> Bool{
-        //TODO
+        if(self.txtTitle.text?.count == 0){
+            AlertUtils.showAlertWithOk(title: "Oops!", message: "You must fill the Title", vc: self)
+            return false
+        }
         return true
     }
     
     func isDescriptionValid() -> Bool{
-        //TODO
+        if(self.txtDescription.text?.count == 0){
+            AlertUtils.showAlertWithOk(title: "Oops!", message: "You must fill the Description", vc: self)
+            return false
+        }
         return true
     }
     
     func isDueDateValid() -> Bool{
-        //TODO
+        if(self.dtDueDate.date <= Date()){
+            AlertUtils.showAlertWithOk(title: "Oops!", message: "The date cannot be in the past", vc: self)
+            return false
+        }
         return true
     }
     
     func isPaymentRateValid() -> Bool{
-        //TODO
+        if(self.txtPaymentRate.text?.count == 0){
+            AlertUtils.showAlertWithOk(title: "Oops!", message: "You must fill the Payment rate", vc: self)
+            return false
+        }
         return true
     }
     
     func isUnitNumberValid() -> Bool{
-        //TODO
+        if(self.txtUnitNumber.text?.count == 0){
+            AlertUtils.showAlertWithOk(title: "Oops!", message: "You must fill the Unit for the address", vc: self)
+            return false
+        }
         return true
     }
     
     func isStreetNumberValid() -> Bool{
-        //TODO
+        if(self.txtStreetNumber.text?.count == 0){
+            AlertUtils.showAlertWithOk(title: "Oops!", message: "You must fill the Street number for the address", vc: self)
+            return false
+        }
         return true
     }
     
     func isStreetValid() -> Bool{
-        //TODO
+        if(self.txtStreet.text?.count == 0){
+            AlertUtils.showAlertWithOk(title: "Oops!", message: "You must fill the Street for the address", vc: self)
+            return false
+        }
         return true
     }
     
     func isCityValid() -> Bool{
-        //TODO
+        if(self.txtCity.text?.count == 0){
+            AlertUtils.showAlertWithOk(title: "Oops!", message: "You must fill the City for the address", vc: self)
+            return false
+        }
         return true
     }
     
     func isPostcodeValid() -> Bool{
-        //TODO
+        if(self.txtPostCode.text?.count == 0){
+            AlertUtils.showAlertWithOk(title: "Oops!", message: "You must fill the Postcode for the address", vc: self)
+            return false
+        }
         return true
     }
     
     func isStateValid() -> Bool{
-        //TODO
+        if(self.txtState.text?.count == 0){
+            AlertUtils.showAlertWithOk(title: "Oops!", message: "You must fill the State for the address", vc: self)
+            return false
+        }
         return true
     }
     

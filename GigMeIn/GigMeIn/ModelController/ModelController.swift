@@ -175,7 +175,7 @@ class ModelController{
     }
     
     func updateJobPost(jobPost: JobPost){
-        self.dbRef.child("jobPosts").child("all").child(jobPost.uid).setValue(jobPost)
+        self.dbRef.child("jobPosts").child("all").child(jobPost.uid).setValue(jobPost.toJSON())
         self.dbRef.child("jobPosts").child("byEmployer").child(self.user.uid).child(jobPost.uid).setValue(jobPost.toJSON())
     }
     
