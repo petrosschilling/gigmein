@@ -28,6 +28,8 @@ class RegisterViewController :UIViewController{
     override func prepare(for segue: UIStoryboardSegue, sender: Any?) {
         if let registerDetailViewController = segue.destination as? RegisterDetailViewController {
             registerDetailViewController.mc = self.mc
+        }else if let loginViewController = segue.destination as? LoginViewController {
+            loginViewController.mc = self.mc
         }
     }
     

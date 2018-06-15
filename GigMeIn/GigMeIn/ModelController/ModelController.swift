@@ -196,7 +196,9 @@ class ModelController{
                         if (self.rejectedJobIds[c.key] == nil && self.appliedJobIds[c.key] == nil){
                             if let value = c.value as? [String: Any],
                                 let jobPostData = Mapper<JobPost>().map(JSON: value){
-                                self.jobsToApply.append(jobPostData)
+                                if(jobPostData.employer != nil){
+                                    self.jobsToApply.append(jobPostData)
+                                }
                             }
                         }
                         
@@ -228,32 +230,42 @@ class ModelController{
         
     }
     
-    func rejectJob(){
-        self.dbRef.child("jobRejections").child(self.user.uid).child(self.jobsToApply[0].uid).setValue(true)
-        self.rejectedJobIds[self.jobsToApply[0].uid] = true
-        self.jobsToApply.remove(at: 0)
+    func rejectJob() -> Promise<Bool>{
+       
+        return Promise{ seal in
+            self.dbRef.child("jobRejections").child(self.user.uid).child(self.jobsToApply[0].uid).setValue(true)
+            self.rejectedJobIds[self.jobsToApply[0].uid] = true
+            self.jobsToApply.removeFirst()
+            seal.fulfill(true);
+        }
+        
     }
     
-    func acceptJob(){
-        let jobAppRef = self.dbRef.child("jobApplications")
-        let jobUID = self.jobsToApply[0].uid
-        let userUID = self.user.uid
-        jobAppRef.child("byJobPost").child(jobUID).child(userUID).setValue(false)
-        jobAppRef.child("byEmployee").child(userUID).child(jobUID).setValue(false)
+    func acceptJob() -> Promise<Bool>{
         
-        //Update number of job applications on database
-        var val = 1
-        let employerUID = self.jobsToApply[0].employer?.uid
-        self.dbRef.child("jobPosts").child("byEmployer").child(employerUID!).child(jobUID).child("numberOfApplications").observeSingleEvent(of: DataEventType.value) { snapshot in
-            if let i = snapshot.value as? Int{
-                val += i
+        return Promise{seal in
+        
+            let jobAppRef = self.dbRef.child("jobApplications")
+            let jobUID = self.jobsToApply[0].uid
+            let userUID = self.user.uid
+            jobAppRef.child("byJobPost").child(jobUID).child(userUID).setValue(false)
+            jobAppRef.child("byEmployee").child(userUID).child(jobUID).setValue(false)
+            
+            //Update number of job applications on database
+            var val = 1
+            let employerUID = self.jobsToApply[0].employer?.uid
+            self.dbRef.child("jobPosts").child("byEmployer").child(employerUID!).child(jobUID).child("numberOfApplications").observeSingleEvent(of: DataEventType.value) { snapshot in
+                if let i = snapshot.value as? Int{
+                    val += i
+                }
             }
+            self.dbRef.child("jobPosts").child("byEmployer").child(employerUID!).child(jobUID).child("numberOfApplications").setValue(val)
+            self.dbRef.child("jobPosts").child("all").child(employerUID!).child(jobUID).child("numberOfApplications").setValue(val)
+            
+            self.appliedJobIds[self.jobsToApply[0].uid] = true
+            self.jobsToApply.removeFirst()
+            seal.fulfill(true)
         }
-        self.dbRef.child("jobPosts").child("byEmployer").child(employerUID!).child(jobUID).child("numberOfApplications").setValue(val)
-        self.dbRef.child("jobPosts").child("all").child(employerUID!).child(jobUID).child("numberOfApplications").setValue(val)
-        
-        self.appliedJobIds[self.jobsToApply[0].uid] = true //??? whats this for? I dont remeber
-        self.jobsToApply.remove(at: 0)
     }
     
     func loadRejectedJobsIds() -> Promise<Bool>{

@@ -63,16 +63,22 @@ class EmployeeMainViewController: UIViewController {
     }
     
     @IBAction func btnRejectPressed(_ sender: Any) {
-        if(self.mc.jobsToApply.count > 0){
-            self.mc.rejectJob()
-            self.updateView()
-        }
+            if(self.mc.jobsToApply.count > 0){
+                firstly{
+                    self.mc.rejectJob()
+                }.done{ b in
+                      self.updateView()
+                }.cauterize()
+            }
     }
     
     @IBAction func btnAcceptPressed(_ sender: Any) {
         if(self.mc.jobsToApply.count > 0){
-            self.mc.acceptJob()
-            self.updateView()
+            firstly{
+                self.mc.acceptJob()
+            }.done{ b in
+                self.updateView()
+            }.cauterize()
         }
     }
     
