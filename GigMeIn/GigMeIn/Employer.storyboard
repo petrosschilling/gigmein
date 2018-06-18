@@ -255,9 +255,36 @@
                                 <color key="textColor" white="0.33333333329999998" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                                 <nil key="highlightedColor"/>
                             </label>
+                            <button opaque="NO" contentMode="scaleToFill" contentHorizontalAlignment="center" contentVerticalAlignment="center" buttonType="roundedRect" lineBreakMode="middleTruncation" translatesAutoresizingMaskIntoConstraints="NO" id="doM-xc-tMd" customClass="UIGradientButton" customModule="GigMeIn" customModuleProvider="target">
+                                <rect key="frame" x="16" y="494" width="343" height="40"/>
+                                <constraints>
+                                    <constraint firstAttribute="height" constant="40" id="7Vs-Rj-19N"/>
+                                </constraints>
+                                <fontDescription key="fontDescription" name="HelveticaNeue-Medium" family="Helvetica Neue" pointSize="18"/>
+                                <state key="normal" title="Reject applicant">
+                                    <color key="titleColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                    <color key="titleShadowColor" white="0.66666666669999997" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
+                                </state>
+                                <userDefinedRuntimeAttributes>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="firstColor">
+                                        <color key="value" red="1" green="0.068093612999999997" blue="0.0" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="color" keyPath="secondColor">
+                                        <color key="value" red="0.89262120864166661" green="0.44143880208333336" blue="0.063841337308333398" alpha="1" colorSpace="custom" customColorSpace="sRGB"/>
+                                    </userDefinedRuntimeAttribute>
+                                    <userDefinedRuntimeAttribute type="boolean" keyPath="isHorizontal" value="YES"/>
+                                    <userDefinedRuntimeAttribute type="number" keyPath="cornerRadius">
+                                        <real key="value" value="12"/>
+                                    </userDefinedRuntimeAttribute>
+                                </userDefinedRuntimeAttributes>
+                                <connections>
+                                    <action selector="btnReject:" destination="IaQ-O3-dfd" eventType="touchUpInside" id="w4i-gI-2Ta"/>
+                                </connections>
+                            </button>
                         </subviews>
                         <color key="backgroundColor" white="1" alpha="1" colorSpace="custom" customColorSpace="genericGamma22GrayColorSpace"/>
                         <constraints>
+                            <constraint firstItem="doM-xc-tMd" firstAttribute="leading" secondItem="4O6-Hb-W8Y" secondAttribute="leading" constant="16" id="8T8-lL-8Xv"/>
                             <constraint firstItem="D71-07-ijJ" firstAttribute="top" secondItem="3Uj-9j-9jm" secondAttribute="bottom" constant="24" id="8lO-bm-365"/>
                             <constraint firstItem="3Uj-9j-9jm" firstAttribute="leading" secondItem="49z-R8-oDF" secondAttribute="trailing" constant="8" id="B3G-Sr-6NT"/>
                             <constraint firstItem="yxP-LV-4Jk" firstAttribute="leading" secondItem="4O6-Hb-W8Y" secondAttribute="leading" constant="16" id="BSd-C7-uRX"/>
@@ -267,9 +294,11 @@
                             <constraint firstItem="D71-07-ijJ" firstAttribute="leading" secondItem="yxP-LV-4Jk" secondAttribute="trailing" constant="8" id="MDn-Jh-jSo"/>
                             <constraint firstItem="4O6-Hb-W8Y" firstAttribute="bottom" secondItem="e0W-sq-G9b" secondAttribute="bottom" constant="61" id="OEQ-2o-GbG"/>
                             <constraint firstItem="4O6-Hb-W8Y" firstAttribute="trailing" secondItem="e0W-sq-G9b" secondAttribute="trailing" constant="16" id="RUi-Go-FF3"/>
+                            <constraint firstItem="4O6-Hb-W8Y" firstAttribute="trailing" secondItem="doM-xc-tMd" secondAttribute="trailing" constant="16" id="SqR-WV-zFf"/>
                             <constraint firstItem="3Uj-9j-9jm" firstAttribute="top" secondItem="0tx-uH-xCb" secondAttribute="bottom" constant="32" id="UjF-mj-1Ka"/>
                             <constraint firstItem="4O6-Hb-W8Y" firstAttribute="trailing" secondItem="0tx-uH-xCb" secondAttribute="trailing" constant="16" id="cQV-FK-uXJ"/>
                             <constraint firstItem="yxP-LV-4Jk" firstAttribute="top" secondItem="3Uj-9j-9jm" secondAttribute="bottom" constant="24" id="cQr-bX-dwQ"/>
+                            <constraint firstItem="e0W-sq-G9b" firstAttribute="top" secondItem="doM-xc-tMd" secondAttribute="bottom" constant="32" id="kNi-Ht-RIm"/>
                             <constraint firstItem="49z-R8-oDF" firstAttribute="leading" secondItem="4O6-Hb-W8Y" secondAttribute="leading" constant="16" id="lHy-Yr-4AK"/>
                             <constraint firstItem="e0W-sq-G9b" firstAttribute="leading" secondItem="4O6-Hb-W8Y" secondAttribute="leading" constant="16" id="mNW-v8-iy3"/>
                             <constraint firstItem="0tx-uH-xCb" firstAttribute="top" secondItem="4O6-Hb-W8Y" secondAttribute="top" constant="16" id="pnN-tn-WwA"/>

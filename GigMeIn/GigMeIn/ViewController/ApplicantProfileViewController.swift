@@ -29,7 +29,10 @@ class ApplicantProfileViewController: UIViewController {
             print("Error: user not set in ApplicantProfileViewController")
         }
     }
-
+    @IBAction func btnReject(_ sender: Any) {
+        self.mc.rejectJobApplication(user: self.user, job:self.job)
+    }
+    
     @IBAction func btnAcceptApplicationClick(_ sender: Any) {
         self.mc.acceptJobApplication(user: self.user, job:self.job)
     }

@@ -122,6 +122,20 @@ class ModelController{
         self.dbRef.child("jobApplications").child("byEmployee").child(user.uid).child(job.uid).setValue(true)
     }
     
+    func rejectJobApplication(user: User, job: JobPost){
+        self.dbRef.child("jobApplications").child("byJobPost").child(job.uid).child(user.uid).removeValue()
+        
+        var val = 1
+        self.dbRef.child("jobPosts").child("byEmployer").child(self.user.uid).child(job.uid).child("numberOfApplications").observeSingleEvent(of: DataEventType.value) { snapshot in
+                if let i = snapshot.value as? Int{
+                    val = i - val
+                }
+            }
+        self.dbRef.child("jobPosts").child("byEmployer").child(self.user.uid).child(job.uid).child("numberOfApplications").setValue(val)
+        self.dbRef.child("jobPosts").child("all").child(self.user.uid).child(job.uid).child("numberOfApplications").setValue(val)
+            
+    }
+    
     func loadJobApplicantsIds(jobPost: JobPost, with dispatch: DispatchGroup){// -> Promise<[String]>{
         self.applicantsIds = []
         dispatch.enter()
